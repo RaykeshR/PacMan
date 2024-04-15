@@ -26,6 +26,9 @@ import java.awt.event.KeyEvent;
 import java.awt.Font;
 import javax.swing.JEditorPane;
 import javax.swing.ImageIcon;
+import java.awt.Canvas;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class PacMan extends JFrame {
 
@@ -73,10 +76,10 @@ public class PacMan extends JFrame {
 		contentPane_1.setToolTipText("");
 		contentPane_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
+		
 		JLabel lblNewLabel_1 = new JLabel("PACMAN");
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
-		
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
@@ -138,6 +141,9 @@ public class PacMan extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		
+		
 		
 		// Les labels  (JLabel) : 
 		
