@@ -77,6 +77,7 @@ public class PacMan extends JFrame {
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		
+		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
 		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
