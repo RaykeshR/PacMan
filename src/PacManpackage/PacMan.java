@@ -60,6 +60,7 @@ public class PacMan extends JFrame {
 		int temps=0;
 		
 		
+
 		setTitle("PacMan");
 		setOpacity(0.5f);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
