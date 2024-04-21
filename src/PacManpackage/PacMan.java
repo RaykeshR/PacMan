@@ -68,6 +68,10 @@ public class PacMan extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+		RCanvas R = new RCanvas();
+		add(R);
+		
 
 		setContentPane(contentPane);
 		
