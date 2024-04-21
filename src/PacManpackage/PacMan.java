@@ -29,6 +29,10 @@ import javax.swing.ImageIcon;
 import java.awt.Canvas;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class PacMan extends JFrame {
 
@@ -51,6 +55,8 @@ public class PacMan extends JFrame {
 		});
 	}
 
+
+	
 	/**
 	 * Create the frame.
 	 */
@@ -70,7 +76,9 @@ public class PacMan extends JFrame {
 		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		RCanvas R = new RCanvas();
-		add(R);
+		R.setBackground(Color.WHITE);
+		R.setForeground(new Color(255, 0, 0));
+		//add(R);
 		
 
 		setContentPane(contentPane);
@@ -86,27 +94,42 @@ public class PacMan extends JFrame {
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("New label De La Carte");
 		lblNewLabel_2.setIcon(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
+		
+		JProgressBar progressBar = new JProgressBar();
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
 		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
 		gl_contentPane_1.setHorizontalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addGap(362)
-					.addComponent(lblNewLabel_1)
-					.addContainerGap(326, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane_1.createSequentialGroup()
-					.addContainerGap(160, Short.MAX_VALUE)
-					.addComponent(lblNewLabel_2)
-					.addGap(127))
+					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_2)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_3)
+							.addGap(208))
+						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addGap(362)
+							.addComponent(lblNewLabel_1)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane_1.setVerticalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addComponent(lblNewLabel_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_2)
-					.addContainerGap(35, Short.MAX_VALUE))
+					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_3)))
+						.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(46, Short.MAX_VALUE))
 		);
 		contentPane_1.setLayout(gl_contentPane_1);
 		
@@ -149,6 +172,7 @@ public class PacMan extends JFrame {
 		
 		
 		
+		contentPane_1.add(R);
 		
 		// Les labels  (JLabel) : 
 		
@@ -199,14 +223,17 @@ public class PacMan extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
-					.addGap(28)
-					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))
+					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-				.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
