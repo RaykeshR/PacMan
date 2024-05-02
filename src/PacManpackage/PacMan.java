@@ -101,6 +101,7 @@ public class PacMan extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
 		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
+		/* Le content Panel 1 " contentPane_1 "*/
 		gl_contentPane_1.setHorizontalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
