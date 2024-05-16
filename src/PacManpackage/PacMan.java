@@ -84,6 +84,14 @@ public class PacMan extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel contentPane_1 = new JPanel();
+		contentPane_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
 		contentPane_1.setForeground(new Color(192, 192, 192));
 		contentPane_1.setBackground(new Color(0, 0, 0));
 		contentPane_1.setToolTipText("");
@@ -101,7 +109,6 @@ public class PacMan extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
 		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
-		/* Le content Panel 1 " contentPane_1 "*/
 		gl_contentPane_1.setHorizontalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
@@ -113,9 +120,9 @@ public class PacMan extends JFrame {
 							.addComponent(lblNewLabel_3)
 							.addGap(208))
 						.addGroup(gl_contentPane_1.createSequentialGroup()
-							.addGap(362)
-							.addComponent(lblNewLabel_1)))
-					.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(188)
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -124,6 +131,7 @@ public class PacMan extends JFrame {
 				.addGroup(gl_contentPane_1.createSequentialGroup()
 					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(lblNewLabel_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane_1.createParallelGroup(Alignment.BASELINE)
@@ -223,18 +231,16 @@ public class PacMan extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addComponent(contentPane_1, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(426, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-					.addContainerGap())
+				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
