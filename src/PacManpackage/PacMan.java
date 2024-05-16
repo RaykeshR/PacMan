@@ -33,6 +33,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import java.awt.Graphics;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class PacMan extends JFrame {
 
@@ -70,12 +71,13 @@ public class PacMan extends JFrame {
 		setTitle("PacMan");
 		setOpacity(0.5f);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 727, 597);
+		setBounds(100, 100, 790, 441);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		RCanvas R = new RCanvas();
+		R.setBounds(0, 0, 0, 0);
 		R.setBackground(Color.WHITE);
 		R.setForeground(new Color(255, 0, 0));
 		//add(R);
@@ -84,15 +86,6 @@ public class PacMan extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel contentPane_1 = new JPanel();
-		contentPane_1.setBounds(3, 3, 491, 552);
-		contentPane_1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-			}
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
 		contentPane_1.setForeground(new Color(192, 192, 192));
 		contentPane_1.setBackground(new Color(0, 0, 0));
 		contentPane_1.setToolTipText("");
@@ -100,52 +93,21 @@ public class PacMan extends JFrame {
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("PACMAN");
-		lblNewLabel_1.setDisplayedMnemonic(KeyEvent.VK_ENTER);
+		lblNewLabel_1.setBounds(184, -2, 101, 33);
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("New label De La Carte");
+		lblNewLabel_2.setBounds(13, 42, 565, 450);
 		lblNewLabel_2.setIcon(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
 		
 		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(841, 3, 146, 14);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
-		gl_contentPane_1.setHorizontalGroup(
-			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane_1.createSequentialGroup()
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_2)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_3)
-							.addGap(208))
-						.addGroup(gl_contentPane_1.createSequentialGroup()
-							.addGap(188)
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane_1.setVerticalGroup(
-			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_2)
-								.addComponent(lblNewLabel_3)))
-						.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(46, Short.MAX_VALUE))
-		);
-		contentPane_1.setLayout(gl_contentPane_1);
+		lblNewLabel_3.setBounds(584, 260, 49, 14);
 		
 		JPanel contentPane_1_1 = new JPanel();
-		contentPane_1_1.setBounds(504, 3, 210, 552);
 		contentPane_1_1.setForeground(new Color(192, 192, 192));
 		contentPane_1_1.setBackground(new Color(0, 0, 0));
 		contentPane_1_1.setToolTipText("");
@@ -181,6 +143,31 @@ public class PacMan extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		ImageIcon icon = new ImageIcon(PacMan.class.getResource("/PacManpackage/rond-jaune.png"));
+		Image image = icon.getImage();
+		Image newImage = image.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH); // Recadrer l'image 
+		icon = new ImageIcon(newImage);
+		//new ImageIcon(PacMan.class.getResource("/PacManpackage/rond-jaune.png"))
+		
+		JLabel lblNewLabel_4 = new JLabel("pacman");
+		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_4.setIcon(icon );
+		lblNewLabel_4.setBounds(233, 278, 15, 15);
+		contentPane_1.add(lblNewLabel_4);
+		
+		ImageIcon originalIcon = new ImageIcon(PacMan.class.getResource("/PacManpackage/fantome1.png"));//new ImageIcon("/PacManPackage/rond-jaune.png");  // Charge l'image
+		Image oimage = originalIcon.getImage();  // Transforme l'ImageIcon en Image
+		Image resizedImage = oimage.getScaledInstance(15, 15,  Image.SCALE_SMOOTH);  // Redimensionne l'image
+		//ImageIcon resizedIcon = new ImageIcon(resizedImage);  // Retransforme en ImageIcon
+		originalIcon = new ImageIcon(resizedImage);
+		//jLabel.setIcon(resizedIcon);  // Affecte l'icône redimensionnée au JLabel
+		
+		JLabel lblNewLabel_4_1 = new JLabel("fantom");
+		lblNewLabel_4_1.setIcon(originalIcon);
+		lblNewLabel_4_1.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_4_1.setBounds(215, 249, 15, 15);
+		contentPane_1.add(lblNewLabel_4_1);
 		
 		
 		
@@ -231,8 +218,28 @@ public class PacMan extends JFrame {
 					.addContainerGap(269, Short.MAX_VALUE))
 		);
 		contentPane_1_1.setLayout(gl_contentPane_1_1);
-		contentPane.setLayout(null);
-		contentPane.add(contentPane_1);
-		contentPane.add(contentPane_1_1);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		contentPane_1.setLayout(null);
+		contentPane_1.add(R);
+		contentPane_1.add(lblNewLabel_2);
+		contentPane_1.add(lblNewLabel_3);
+		contentPane_1.add(lblNewLabel_1);
+		contentPane_1.add(progressBar);
+		contentPane.setLayout(gl_contentPane);
 	}
 }
