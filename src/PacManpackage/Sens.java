@@ -15,7 +15,7 @@ public enum Sens {
 	        this.dy = dy;
 	    }
 
-	    public Sens turnLeft() {
+	    public Sens RotationAntiHoraire() {
 	        switch (this) {
 	            case UP:
 	                return LEFT;
@@ -30,7 +30,7 @@ public enum Sens {
 	        }
 	    }
 
-	    public Sens turnRight() {
+	    public Sens RotationHoraire() {
 	        switch (this) {
 	            case UP:
 	                return RIGHT;
@@ -43,6 +43,9 @@ public enum Sens {
 	            default:
 	                return NONE;
 	        }
+	    }
+	    public Sens Droite() {
+	       return RIGHT; 
 	    }
 
 	    public int getDx() {

@@ -70,7 +70,7 @@ public class PacMan extends JFrame {
 		setTitle("PacMan");
 		setOpacity(0.5f);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 790, 441);
+		setBounds(100, 100, 727, 597);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -84,6 +84,7 @@ public class PacMan extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel contentPane_1 = new JPanel();
+		contentPane_1.setBounds(3, 3, 491, 552);
 		contentPane_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -99,6 +100,7 @@ public class PacMan extends JFrame {
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("PACMAN");
+		lblNewLabel_1.setDisplayedMnemonic(KeyEvent.VK_ENTER);
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		
@@ -143,6 +145,7 @@ public class PacMan extends JFrame {
 		contentPane_1.setLayout(gl_contentPane_1);
 		
 		JPanel contentPane_1_1 = new JPanel();
+		contentPane_1_1.setBounds(504, 3, 210, 552);
 		contentPane_1_1.setForeground(new Color(192, 192, 192));
 		contentPane_1_1.setBackground(new Color(0, 0, 0));
 		contentPane_1_1.setToolTipText("");
@@ -228,20 +231,8 @@ public class PacMan extends JFrame {
 					.addContainerGap(269, Short.MAX_VALUE))
 		);
 		contentPane_1_1.setLayout(gl_contentPane_1_1);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(426, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-		);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(contentPane_1);
+		contentPane.add(contentPane_1_1);
 	}
 }
