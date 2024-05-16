@@ -1,11 +1,11 @@
 package PacManpackage;
 
 public enum Sens {
-	    NONE(0, 0),
-	    UP(-1, 0),
-	    DOWN(1, 0),
-	    LEFT(0, -1),
-	    RIGHT(0, 1);
+	    NONE(0, 0), 
+	    UP(-1, 0), 
+	    DOWN(1, 0), 
+	    LEFT(0, -1), 
+	    RIGHT(0, 1); 
 
 	    private final int dx;
 	    private final int dy;
@@ -54,3 +54,30 @@ public enum Sens {
 	    }
 
 }
+
+
+//Example
+
+/*
+
+public class PacMan {
+    private Direction direction;
+
+    public void move() {
+        int newX = getX() + direction.getDx();
+        int newY = getY() + direction.getDy();
+        // update the position of the Pac-Man
+    }
+
+    public void turnLeft() {
+        direction = direction.turnLeft();
+    }
+
+    public void turnRight() {
+        direction = direction.turnRight();
+    }
+}
+
+*/
+
+
