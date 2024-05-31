@@ -164,6 +164,7 @@ public class PacMan extends JFrame {
 		//jLabel.setIcon(resizedIcon);  // Affecte l'icône redimensionnée au JLabel
 		
 		JLabel lblNewLabel_4_1 = new JLabel("fantom");
+		Fantome Clyde  = new Fantome(lblNewLabel_4_1); // Clyde Fantome orange. 
 		lblNewLabel_4_1.setIcon(originalIcon);
 		lblNewLabel_4_1.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4_1.setBounds(215, 249, 15, 15);
