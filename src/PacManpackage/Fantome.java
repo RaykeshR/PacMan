@@ -47,6 +47,13 @@ public class Fantome {
 		};
 		//int[][] P = Plateau.P_original; // On récupère le plateau
 		//...
+		//On récupère la matrice 3x3 des case alentoure
+		// Petit Rappel : 
+		// 1 les mur | 9 | 8 | 10 | 7 un fantome | 
+		// O les Vides | 3 les points |  4 les Gros Bonus | 5 Fruit (Cerises : 100 point|fraise : 300 point|? : 500 point|Pomme : 700 point|Fruit du Dragon : 1000 point|? : 2000 point|? : 3000 point|Clés : 5000 point|)
+		// 2 les Portail
+		// 6 PacMan
+		//...
 		return L;
 	}
 	
