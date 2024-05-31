@@ -22,6 +22,12 @@ public class Fantome {
 		this.Px=Px;this.Py=Py;
 	}
 	
+	/**
+	 * @Fonctionnement : va à une position x,y 
+	 * Avec le label
+	 * @param x
+	 * @param y
+	 */
 	void Goto(int x,int y) {
 		// TODO ...
 		//label
@@ -38,6 +44,7 @@ public class Fantome {
 			{0,0,0},
 			{0,0,0},
 		};
+		//int[][] P = Plateau.P_original; // On récupère le plateau
 		//...
 		return L;
 	}
@@ -47,6 +54,11 @@ public class Fantome {
 	 */
 	void MouvementAuto() {
 		//TODO
+		if(mur()[1+S.getDx()][1+S.getDy()]==0) {
+			//Si il n'y a pas de mur dans le sens courant on continue (95% du temps)
+			int n =1; // déplacement d'une Case
+			Goto(x+S.getDx()*n,y+S.getDy()*n);
+		}
 	}
 	
 	
