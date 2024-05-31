@@ -22,13 +22,32 @@ public class Fantome {
 		this.Px=Px;this.Py=Py;
 	}
 	
-	void Goto(double x,double y) {
+	void Goto(int x,int y) {
 		// TODO ...
 		//label
 	}
 
+	/**
+	 * @Fonctionnement : Verifie la présence de mur dans le Plateau 
+	 * @return Une matrice de 3 par 3 indiquant la position des mur alentoure du labyrinte
+	 * 1 indique la présence d'un mur et 0 l'absence d'un mur . 
+	 */
+	int[][] mur() {
+		int[][] L = new int[][] {
+			{0,0,0},
+			{0,0,0},
+			{0,0,0},
+		};
+		//...
+		return L;
+	}
 	
-	
+	/**
+	 * @Fonctionnement : Définie le mouvement aléatoire des fantômes 
+	 */
+	void MouvementAuto() {
+		//TODO
+	}
 	
 	
 	
