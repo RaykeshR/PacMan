@@ -173,8 +173,8 @@ public class PacMan extends JFrame {
 		lblNewLabel_4_1.setBounds(215, 249, 15, 15);
 		//lblNewLabel_4_1.setBounds(Clyde.getX(), Clyde.getY(), Clyde.getTaille(), Clyde.getTaille());
 		lblNewLabel_4_1.setBounds(Clyde.getX(), Clyde.getY(), 15, 15);
-		contentPane_1.add(lblNewLabel_4_1);
-		contentPane_1.add(lblNewLabel_4_1);
+		contentPane_1.add(lblNewLabel_4_1) ; 
+		contentPane_1.add(lblNewLabel_4_1) ; 
 		
 		
 		contentPane_1.add(R);
