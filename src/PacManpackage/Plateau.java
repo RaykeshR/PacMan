@@ -65,7 +65,27 @@ public class Plateau {
 	{1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1}, 
 	{1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1}, 
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
-	
+
+	/**
+	 * @return the p_original
+	 */
+	public int[][] getP_original() {
+		return P_original;
+	}
+
+	/**
+	 * @param p_original the p_original to set
+	 */
+	public void setP_original(int[][] p_original) {
+		P_original = p_original;
+	}
+
+	/**
+	 * @param p_original the p_original to set
+	 */
+	public void setP(int x,int y,int valeur) {
+		P_original[x][y] = valeur;
+	}
 	
 	
 
