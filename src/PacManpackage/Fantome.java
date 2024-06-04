@@ -31,6 +31,19 @@ public class Fantome {
 	void Goto(int x,int y) {
 		// TODO ...
 		//label
+		int dx=(this.x-x);
+		int dy=(this.y-y);
+		if((dx)%10!=0 || (dy)%10!=0) {
+			System.out.println("erreur");
+		}else {
+			if(((dx)!=10 && (dx)!=-10) || ((dy)!=10 && (dy)!=-10)) {
+				System.out.println("erreur 2");
+			}// else : dx==10 ou -10 et dy=10 ou -10
+			this.x=x;this.y=y;
+			this.Px+=dx/10; // (this.x-x)=dx
+			this.Py+=dy/10;
+		}
+		
 	}
 
 	/**
@@ -79,7 +92,7 @@ public class Fantome {
 		int[][] M=mur(); 
 		if( M[1+S.getDx()][1+S.getDy()]==0 && Decision >= 95 ) {
 			//Si il n'y a pas de mur dans le sens courant on continue (95% du temps)
-			int n =1; // déplacement d'une Case
+			int n =10; // déplacement de 10 Case
 			Goto(x+S.getDx()*n,y+S.getDy()*n); 
 		}else {
 			// Choisi une direction parmi celle disponible.
