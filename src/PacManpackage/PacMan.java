@@ -39,6 +39,9 @@ public class PacMan extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	int score=0;
+	int temps=0;
+	JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -49,6 +52,7 @@ public class PacMan extends JFrame {
 				try {
 					PacMan frame = new PacMan();
 					frame.setVisible(true);
+					frame.augmenterleScore();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,6 +60,12 @@ public class PacMan extends JFrame {
 		});
 	}
 
+	
+	
+	public void augmenterleScore() {
+		score+=1;
+		lblNewLabel.setText("   Score : " + score);
+	}
 
 	
 	/**
@@ -63,8 +73,8 @@ public class PacMan extends JFrame {
 	 */
 	public PacMan() {
 		
-		int score=0;
-		int temps=0;
+//		int score=0;
+//		int temps=0;
 		
 		
 
@@ -114,6 +124,9 @@ public class PacMan extends JFrame {
 		contentPane_1_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		
+		
+
+		
 		// Les Bouttons  (JButton) : 
 		
 		JButton btnNewButton_Q = new JButton("<");
@@ -123,6 +136,7 @@ public class PacMan extends JFrame {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_LEFT || e.getExtendedKeyCode()==KeyEvent.VK_Q) {
 					//TODO (Raykesh nous dit que le bouton Gauche est appuier) Clavier !
 					//TODO
+					augmenterleScore();
 				}
 			}
 		});
@@ -130,6 +144,7 @@ public class PacMan extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println("Button clicked!");
 				//TODO (Raykesh nous dit que le bouton Gauche est appuier)
+				augmenterleScore();
 			}
 		});
 		
@@ -140,12 +155,14 @@ public class PacMan extends JFrame {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_DOWN || e.getExtendedKeyCode()==KeyEvent.VK_S) {
 					//TODO (Raykesh nous dit que le bouton Bas est appuier) Clavier !
 					//TODO
+					augmenterleScore();
 				}
 			}
 		});
 		btnNewButton_S.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO (Raykesh nous dit que le bouton Bas est appuier)
+				augmenterleScore();
 			}
 		});
 		
@@ -156,12 +173,14 @@ public class PacMan extends JFrame {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_RIGHT || e.getExtendedKeyCode()==KeyEvent.VK_D) {
 					//TODO (Raykesh nous dit que le bouton Droite est appuier) Clavier !
 					//TODO
+					augmenterleScore();
 				}
 			}
 		});
 		btnNewButton_D.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO (Raykesh nous dit que le bouton Droite est appuier)
+				augmenterleScore();
 			}
 		});
 		
@@ -172,12 +191,14 @@ public class PacMan extends JFrame {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_UP || e.getExtendedKeyCode()==KeyEvent.VK_Z) {
 					//TODO (Raykesh nous dit que le bouton Haut est appuier) Clavier !
 					//TODO
+					augmenterleScore();
 				}
 			}
 		});
 		btnNewButton_Z.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO (Raykesh nous dit que le bouton Haut est appuier)
+				augmenterleScore();
 			}
 		});
 		
@@ -216,9 +237,11 @@ public class PacMan extends JFrame {
 		
 		contentPane_1.add(R);
 		
-		// Les labels  (JLabel) : 
+
 		
-		JLabel lblNewLabel = new JLabel("   Score : "+score);
+		JLabel lblNewLabelR = new JLabel("   Score : "+score);
+		this.lblNewLabel = lblNewLabelR; // Add this line
+		lblNewLabel.setText("   Score : " + score);
 		lblNewLabel.setForeground(new Color(192, 192, 192));
 		
 		JLabel lblTemps = new JLabel("   Temps : "+temps);
