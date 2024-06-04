@@ -62,41 +62,41 @@ public class Fantome {
 	 */
 	void MouvementAuto() {
 		int Decision = getRandomNumber(1,100); // [ 1 , 100 ] 
-		int[][] M=mur();
+		int[][] M=mur(); 
 		if( M[1+S.getDx()][1+S.getDy()]==0 && Decision >= 95 ) {
 			//Si il n'y a pas de mur dans le sens courant on continue (95% du temps)
 			int n =1; // déplacement d'une Case
-			Goto(x+S.getDx()*n,y+S.getDy()*n);
+			Goto(x+S.getDx()*n,y+S.getDy()*n); 
 		}else {
 			// Choisi une direction parmi celle disponible.
-			int SensPossible = (1-M[0][1]) + (1-M[1][0]) + (1-M[2][1]) + (1-M[1][2]);
-			Sens[] NouveauSens = new Sens[SensPossible];
+			int SensPossible = (1-M[0][1]) + (1-M[1][0]) + (1-M[2][1]) + (1-M[1][2]); 
+			Sens[] NouveauSens = new Sens[SensPossible]; 
 			if (SensPossible!=0) {
 				int DecisionNouveauSens = getRandomNumber(0,SensPossible-1); // [ 0 , SensPossible [ 
 				// Remplir NouveauSens
-				int index=0;
+				int index=0; 
 				if (M[0][1]==0) {
 					// Case du haut disponible
-					NouveauSens[index] = Sens.UP;
-					index++;
+					NouveauSens[index] = Sens.UP; 
+					index++; 
 				}
 				if (M[1][0]==0) {
 			        // Case de la gauche disponible
-			        NouveauSens[index] = Sens.LEFT;
-			        index++;
+			        NouveauSens[index] = Sens.LEFT; 
+			        index++; 
 			    }
 			    if (M[2][1]==0) {
 			        // Case du bas disponible
-			        NouveauSens[index] = Sens.DOWN;
-			        index++;
+			        NouveauSens[index] = Sens.DOWN; 
+			        index++; 
 			    }
 			    if (M[1][2]==0) {
 			        // Case de la droite disponible
-			        NouveauSens[index] = Sens.RIGHT;
-			        index++;
+			        NouveauSens[index] = Sens.RIGHT; 
+			        index++; 
 			    }
 			    // Nouvelle direction choisi
-			    S = NouveauSens[DecisionNouveauSens];
+			    S = NouveauSens[DecisionNouveauSens]; 
 			    
 			    MouvementAuto(); 
 			    // Case disponible donc mouvement
