@@ -122,25 +122,44 @@ public class PacMan extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_LEFT || e.getExtendedKeyCode()==KeyEvent.VK_Q) {
 					//TODO (Raykesh nous dit que le bouton Gauche est appuier)
+					//TODO
 				}
 			}
 		});
 		btnNewButton_Q.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//System.out.println("Button clicked!");
+				//TODO (Raykesh nous dit que le bouton Gauche est appuier)
 			}
 		});
 		
 		JButton btnNewButton_S = new JButton("V");
+		btnNewButton_Q.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getExtendedKeyCode()==KeyEvent.VK_DOWN || e.getExtendedKeyCode()==KeyEvent.VK_S) {
+					//TODO (Raykesh nous dit que le bouton Bas est appuier)
+					//TODO
+				}
+			}
+		});
 		btnNewButton_S.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO (Raykesh nous dit que le bouton Bas est appuier)
 			}
 		});
 		
 		JButton btnNewButton_D = new JButton(">");
+		btnNewButton_D.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO (Raykesh nous dit que le bouton Droite est appuier)
+			}
+		});
 		
 		JButton btnNewButton_Z = new JButton("^");
 		btnNewButton_Z.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO (Raykesh nous dit que le bouton Haut est appuier)
 			}
 		});
 		
