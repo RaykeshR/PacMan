@@ -228,17 +228,15 @@ public class PacMan extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-					.addContainerGap())
+				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+				.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
 		);
 		contentPane_1.setLayout(null);
 		contentPane_1.add(R);
