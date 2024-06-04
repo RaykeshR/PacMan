@@ -26,6 +26,6 @@ N'oubliez pas de voir notre Site : [Liens vers Notre Site ]().
 ##### Ici la matrice du plateau utiliser :
 
 <!-- ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true) -->
-![alt text](https://github.com/RaykeshR/PacMan/blob/main/matriceDuPlateau.png)
+>![alt text](https://github.com/RaykeshR/PacMan/blob/main/matriceDuPlateau.png)
 
 
