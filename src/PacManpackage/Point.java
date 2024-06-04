@@ -46,6 +46,7 @@ public class Point {
 	
 	/**
 	 * Dans la matrice, c'est repésentée par des 3
+	 * renvoie les objets de la classe point correspondont aux point sur le plateau.
 	 */
 	public Point[] LesPointstandard(int n) {
 		Plateau get = new Plateau();
@@ -76,6 +77,31 @@ public class Point {
 	        }
 	    }
 	    return count;
+	}
+	
+	
+	/**
+	 * 
+	 * renvoie les objets de la classe point correspondont aux Gros point sur le plateau.
+	 * n=10
+	 */
+	public Point[] LesBonus(int n) {
+		Plateau get = new Plateau();
+	    int[][] P = get.getPlateau();
+	    int nombreELements = count(P, 4);
+	    Point[] points = new Point[nombreELements];
+	    int index = 0;
+	    for (int i = 0; i < P.length; i++) {
+	        for (int j = 0; j < P[i].length; j++) {
+	            if (P[i][j] == 4) {
+	                points[index] = new Point(i * n, j * n);
+	                points[index].Px = i;
+	                points[index].Py = j;
+	                index++;
+	            }
+	        }
+	    }
+	    return points;
 	}
 	
 	

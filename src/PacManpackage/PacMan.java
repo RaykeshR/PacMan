@@ -43,6 +43,7 @@ public class PacMan extends JFrame {
 	int temps=0;
 	JLabel lblNewLabel;
 
+	
 	/**
 	 * Launch the application.
 	 */
