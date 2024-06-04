@@ -9,14 +9,14 @@ public class Fantome {
 	//position : en coordonné 
 	int x,y;
 	// Position dans le Plateau (Matrice)
-	double Px,Py;
+	int Px,Py;
 	//taille Optionnel : 
 	private int taille;
 	public Fantome(JLabel LeLabelDuFantome) {
 		this.label = LeLabelDuFantome;
 	}
 	
-	public Fantome(JLabel LeLabelDuFantome ,int x,int y,double Px,double Py) {
+	public Fantome(JLabel LeLabelDuFantome ,int x,int y,int Px,int Py) {
 		this.label = LeLabelDuFantome;
 		this.x=x;this.y=y;
 		this.Px=Px;this.Py=Py;
@@ -45,8 +45,9 @@ public class Fantome {
 			{0,0,0},
 			{0,0,0},
 		};
+		Plateau get = new Plateau(); // TODO changé aux plateaux Réél ! ! !
 		//int[][] P = Plateau.P_original; // On récupère le plateau
-		//...
+		int[][] G = get.getMat3(Px,Py); // TODO changé aux plateaux Réél ! ! !
 		//On récupère la matrice 3x3 des case alentoure
 		// Petit Rappel : 
 		// 1 les mur | 9 | 8 | 10 | 7 un fantome | 
@@ -54,6 +55,19 @@ public class Fantome {
 		// 2 les Portail
 		// 6 PacMan
 		//...
+		
+	    // On parcourt la matrice 3x3
+	    for (int i = 0; i < 3; i++) {
+	        for (int j = 0; j < 3; j++) {
+	            if (G[i][j] == 1 || G[i][j] == 7 || G[i][j] == 8 || G[i][j] == 9 || G[i][j] == 10) { // Si c'est un mur
+	                L[i][j] = 1; // On met 1 dans la matrice de retour
+	            } else {
+	                L[i][j] = 0; // Sinon on met 0
+	            }
+	        }
+	    }
+
+		
 		return L;
 	}
 	
@@ -161,14 +175,14 @@ public class Fantome {
 	/**
 	 * @return the px
 	 */
-	public double getPx() {
+	public int getPx() {
 		return Px;
 	}
 
 	/**
 	 * @return the py
 	 */
-	public double getPy() {
+	public int getPy() {
 		return Py;
 	}
 
@@ -203,14 +217,14 @@ public class Fantome {
 	/**
 	 * @param px the px to set
 	 */
-	public void setPx(double px) {
+	public void setPx(int px) {
 		Px = px;
 	}
 
 	/**
 	 * @param py the py to set
 	 */
-	public void setPy(double py) {
+	public void setPy(int py) {
 		Py = py;
 	}
 
