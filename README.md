@@ -21,3 +21,6 @@ N'oubliez pas de voir notre Site : [Liens vers Notre Site ]().
 
 @PacMan :+1: This PR looks great - it's ready to merge! :octocat: :neckbeard: :bowtie: :shipit:
 
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
+
