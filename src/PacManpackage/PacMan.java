@@ -121,7 +121,7 @@ public class PacMan extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_LEFT || e.getExtendedKeyCode()==KeyEvent.VK_Q) {
-					//TODO (Raykesh nous dit que le bouton Gauche est appuier)
+					//TODO (Raykesh nous dit que le bouton Gauche est appuier) Clavier !
 					//TODO
 				}
 			}
@@ -134,11 +134,11 @@ public class PacMan extends JFrame {
 		});
 		
 		JButton btnNewButton_S = new JButton("V");
-		btnNewButton_Q.addKeyListener(new KeyAdapter() {
+		btnNewButton_S.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_DOWN || e.getExtendedKeyCode()==KeyEvent.VK_S) {
-					//TODO (Raykesh nous dit que le bouton Bas est appuier)
+					//TODO (Raykesh nous dit que le bouton Bas est appuier) Clavier !
 					//TODO
 				}
 			}
@@ -150,6 +150,15 @@ public class PacMan extends JFrame {
 		});
 		
 		JButton btnNewButton_D = new JButton(">");
+		btnNewButton_D.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getExtendedKeyCode()==KeyEvent.VK_RIGHT || e.getExtendedKeyCode()==KeyEvent.VK_D) {
+					//TODO (Raykesh nous dit que le bouton Droite est appuier) Clavier !
+					//TODO
+				}
+			}
+		});
 		btnNewButton_D.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO (Raykesh nous dit que le bouton Droite est appuier)
@@ -157,6 +166,15 @@ public class PacMan extends JFrame {
 		});
 		
 		JButton btnNewButton_Z = new JButton("^");
+		btnNewButton_Z.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getExtendedKeyCode()==KeyEvent.VK_UP || e.getExtendedKeyCode()==KeyEvent.VK_Z) {
+					//TODO (Raykesh nous dit que le bouton Haut est appuier) Clavier !
+					//TODO
+				}
+			}
+		});
 		btnNewButton_Z.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO (Raykesh nous dit que le bouton Haut est appuier)
