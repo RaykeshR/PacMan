@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class PacManCharacter {
     private JLabel label;
-    private int x, y;
+    private int x, y,dx,dy;
     private int[][] matrix;
     private final int SIZE = 10; // La taille de chaque case dans la matrice
     private final int offsetX = 110;
@@ -51,17 +51,23 @@ public class PacManCharacter {
     }
     
     private void move() {
+    	dx = 0;
+    	dy = 0;
         switch (direction) {
             case "LEFT":
+            	dx=-1;
                 moveLeft();
                 break;
             case "RIGHT":
+            	dx=1;
                 moveRight();
                 break;
             case "UP":
+            	dy=-1;
                 moveUp();
                 break;
             case "DOWN":
+            	dy=1;
                 moveDown();
                 break;
         }
@@ -100,6 +106,31 @@ public class PacManCharacter {
     }
 
     private void updatePosition() {
-        label.setBounds(x * SIZE + offsetX, y * SIZE + offsetY, label.getWidth(), label.getHeight());
+//        label.setBounds((x-dx) * SIZE + offsetX, (y-dy) * SIZE + offsetY, label.getWidth(), label.getHeight());
+//        for(int i=0;i<SIZE;i++) {
+//        	label.setBounds((x-dx) * SIZE + offsetX + dx*i, (y-dy) * SIZE + offsetY + dy*i, label.getWidth(), label.getHeight());
+//        }
+    	if((matrix[y][x + 1] != 0 || matrix[y][x - 1] != 0) && dx!=0) {
+    		label.setBounds((x) * SIZE + offsetX, (y) * SIZE + offsetY, label.getWidth(), label.getHeight());
+    	}
+    	else {
+	    	int newX = (x-dx) * SIZE + offsetX;
+	        int newY = (y-dy) * SIZE + offsetY;
+	
+	        // Create a timer to update the position with a delay
+	        Timer updateTimer = new Timer(10, new ActionListener() {
+	            int i = 0;
+	            public void actionPerformed(ActionEvent e) {
+	                label.setBounds(newX + dx * i, newY + dy * i, label.getWidth(), label.getHeight());
+	                i++;
+	
+	                // Stop the timer when the animation is complete
+	                if (i >= SIZE) {
+	                    ((Timer) e.getSource()).stop();
+	                }
+	            }
+	        });
+	        updateTimer.start();
+        }
     }
 }

@@ -1,17 +1,44 @@
 package PacManpackage;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.Timer;
+
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Fantome {
 
-	JLabel label;
-	Sens S;
+	//JLabel label;
+	Sens S = Sens.UP;
 	//position : en coordonné 
-	int x,y;
+	//int x,y;
 	// Position dans le Plateau (Matrice)
 	int Px,Py;
 	//taille Optionnel : 
 	private int taille;
+	
+	
+	private JLabel label;
+    private int x, y;
+    private int[][] matrix;
+    private final int SIZE = 10; // La taille de chaque case dans la matrice
+    private final int offsetX = 100;
+    private final int offsetY = 65;
+    private String direction = ""; // Direction actuelle
+    private String previousDirection = "" ;
+    private Timer timer; // Timer pour le déplacement continu
+	
+	
 	public Fantome(JLabel LeLabelDuFantome) {
 		this.label = LeLabelDuFantome;
 	}
@@ -21,6 +48,42 @@ public class Fantome {
 		this.x=x;this.y=y;
 		this.Px=Px;this.Py=Py;
 	}
+	
+	public Fantome(JLayeredPane pane, int[][] matrix) {
+        this.matrix = matrix;
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/fantome1.png"));
+        icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
+        label = new JLabel(icon);
+        // Position initiale de Pac-Man dans la matrice
+        x = 14; // colonne
+        y = 17; // ligne
+        label.setBounds(x * SIZE + offsetX, y * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
+        pane.add(label, Integer.valueOf(3));  // Ajouter Pac-Man au pane
+        
+        timer = new Timer(200, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                move();
+            }
+        });
+        timer.start(); // Démarrer le timer
+    }
+
+	   private ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
+	        Image img = icon.getImage();
+	        Image resizedImage = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+	        return new ImageIcon(resizedImage);
+	    }
+	    
+	   
+	private void move() {
+		MouvementAuto();
+		updatePosition();
+	}
+	private void updatePosition() {
+	    label.setBounds(x * SIZE + offsetX, y * SIZE + offsetY, label.getWidth(), label.getHeight());
+	}
+	
+	
 	
 	/**
 	 * @Fonctionnement : va à une position x,y 

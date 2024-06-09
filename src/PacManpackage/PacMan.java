@@ -14,6 +14,7 @@ public class PacMan extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private PacManCharacter pacman;
+    private Fantome fantom;
     private GridBagConstraints gbc_1;
 
     public static void main(String[] args) {
@@ -56,7 +57,8 @@ public class PacMan extends JFrame {
         
         int[][] matrix = plateau.getPlateauBinaire(); 
         
-        pacman = new PacManCharacter(layeredPane, matrix);        
+        pacman = new PacManCharacter(layeredPane, matrix);  
+        fantom  = new Fantome(layeredPane, matrix);  
         
         JPanel controlPanel = new JPanel();
         controlPanel.setBackground(Color.BLACK);
