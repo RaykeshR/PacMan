@@ -80,6 +80,7 @@ public class PacMan extends JFrame {
         btnUp.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		pacman.setDirection("UP");
+        		fantom.setDirection("UP");
         	}
         });
         gbc.gridx = 1;
@@ -92,6 +93,7 @@ public class PacMan extends JFrame {
         btnDown.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		pacman.setDirection("DOWN");
+        		fantom.setDirection("DOWN");
         	}
         });
         gbc.gridx = 1;
@@ -104,6 +106,7 @@ public class PacMan extends JFrame {
         btnLeft.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		pacman.setDirection("LEFT");
+        		fantom.setDirection("LEFT");
         	}
         });
         gbc.gridx = 0;
@@ -117,6 +120,7 @@ public class PacMan extends JFrame {
         btnRight.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		pacman.setDirection("RIGHT");
+        		fantom.setDirection("RIGHT");
         	}
         });
         
