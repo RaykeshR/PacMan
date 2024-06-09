@@ -109,7 +109,7 @@ public class PacMan extends JFrame {
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("New label De La Carte");
-		lblNewLabel_2.setBounds(13, 42, 565, 450);
+		lblNewLabel_2.setBounds(-76, -62, 565, 450);
 		lblNewLabel_2.setIcon(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
 		
 		JProgressBar progressBar = new JProgressBar();
@@ -125,8 +125,17 @@ public class PacMan extends JFrame {
 		contentPane_1_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		
-		
+        // Créer une instance de Plateau 
+        Plateau plateau = new Plateau(); 
 
+        // Utiliser cette instance pour créer le panel 
+        MatrixPanel panel = new MatrixPanel(plateau); 
+        FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+        flowLayout.setHgap(10);
+        getContentPane().add(panel); 
+        pack(); 
+        setLocationRelativeTo(null); 
+        setVisible(true); 
 		
 		// Les Bouttons  (JButton) : 
 		
@@ -134,6 +143,14 @@ public class PacMan extends JFrame {
 		btnNewButton_Q.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if (e.getExtendedKeyCode()==KeyEvent.VK_LEFT || e.getExtendedKeyCode()==KeyEvent.VK_Q) {
+					//TODO (Raykesh nous dit que le bouton Gauche est appuier) Clavier !
+					//TODO
+					augmenterleScore();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
 				if (e.getExtendedKeyCode()==KeyEvent.VK_LEFT || e.getExtendedKeyCode()==KeyEvent.VK_Q) {
 					//TODO (Raykesh nous dit que le bouton Gauche est appuier) Clavier !
 					//TODO
@@ -289,17 +306,17 @@ public class PacMan extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(18)
+					.addComponent(contentPane_1, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(contentPane_1_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(contentPane_1_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
 					.addContainerGap())
+				.addComponent(contentPane_1, GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
 		);
 		contentPane_1.setLayout(null);
 		contentPane_1.add(R);
