@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class PacMan extends JFrame {
@@ -16,6 +18,8 @@ public class PacMan extends JFrame {
     private PacManCharacter pacman;
     private Fantome fantom;
     private GridBagConstraints gbc_1;
+    private double timer=0;
+    private Timer timerUpdate;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -166,10 +170,24 @@ public class PacMan extends JFrame {
         lblScore.setForeground(Color.WHITE);
         lblScore.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        JLabel lblTime = new JLabel("Time: 0");
+        
+        JLabel lblTime = new JLabel("Time: "+timer);
         lblTime.setForeground(Color.WHITE);
         lblTime.setFont(new Font("Tahoma", Font.BOLD, 14));
 
+        
+        
+        timerUpdate = new Timer();
+        timerUpdate.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                timer += 0.1; // Update timer value every 0.1 seconds
+                lblTime.setText("Time: " + String.format("%.1f", timer));
+            }
+        }, 100, 100); // Update every 100 milliseconds
+        
+
+        
         JPanel statusPanel = new JPanel(new GridLayout(2, 1)); // Status labels below buttons
         statusPanel.setBackground(Color.BLACK);
         statusPanel.add(lblScore);
