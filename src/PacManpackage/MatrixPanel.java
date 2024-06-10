@@ -13,11 +13,11 @@ public class MatrixPanel extends JPanel {
     private int[][] matrix;
     private final int size = 10;  // taille de chaque carré
     private List<Point> points;
-    private int score ;
+//    private int score ;
 
     public MatrixPanel(Plateau plateau) {
         this.matrix = plateau.getPlateauBinaire();
-        this.score = 0 ;
+//        this.score = 0 ;
         int width = matrix[0].length * size;
         int height = matrix.length * size;
         setPreferredSize(new Dimension(width, height));
@@ -40,6 +40,7 @@ public class MatrixPanel extends JPanel {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] == 1) {
                     g.setColor(Color.BLUE);
+                    // la map (the maze) avec des carré bleu
                 } else if (matrix[i][j] == 2) {
                     g.setColor(Color.BLACK);
                     g.fillRect(j * size, i * size, size, size);
@@ -52,9 +53,11 @@ public class MatrixPanel extends JPanel {
 
         // Draw points for cells with value 2
         for (Point point : points) {
-            JLabel label = point.getLabel();
-            label.setLocation(point.getX() * size+3, point.getY() * size+3);
-            this.add(label);
+//        	if (point.getX()!=0 || point.getY()!=0) {
+	            JLabel label = point.getLabel();
+	            label.setLocation(point.getX() * size+3, point.getY() * size+3);
+	            this.add(label);
+//            }
         }
     }
 
@@ -65,14 +68,21 @@ public class MatrixPanel extends JPanel {
  
     public void removePoint(Point point) {
         points.remove(point);
+        remove(point.getLabel()); // Ligne Magique qui enlève les labels qui apparaise en haut à gauche
         repaint();
     }
     
 
-    public int getScore() {
-        return score;
-    }
+//    public int getScore() {
+//        return score;
+//    }
     
+    /**
+     *  Getter utiliser pour avoir un point connaissant c'est coordonnée x et y.
+     * @param x
+     * @param y
+     * @return
+     */
     public Point getPoint(int x, int y) {
         for (Point point : points) {
             if (point.getX() == x && point.getY() == y) {

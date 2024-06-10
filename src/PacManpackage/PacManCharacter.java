@@ -58,19 +58,19 @@ public class PacManCharacter {
     	dy = 0;
         switch (direction) {
             case "LEFT":
-            	dx=-1;
+            	dx=-1;// lissage des déplacement
                 moveLeft();
                 break;
             case "RIGHT":
-            	dx=1;
+            	dx=1;// lissage des déplacement
                 moveRight();
                 break;
             case "UP":
-            	dy=-1;
+            	dy=-1;// lissage des déplacement
                 moveUp();
                 break;
             case "DOWN":
-            	dy=1;
+            	dy=1;// lissage des déplacement
                 moveDown();
                 break;
         }
@@ -115,6 +115,7 @@ public class PacManCharacter {
 //        	label.setBounds((x-dx) * SIZE + offsetX + dx*i, (y-dy) * SIZE + offsetY + dy*i, label.getWidth(), label.getHeight());
 //        }
     	if( x >= matrix[0].length - 1 || x <= 0 || (matrix[y][x + 1] == 1 || matrix[y][x - 1] == 1) && dx!=0) {
+    		// Gestion des bug
     		label.setBounds((x) * SIZE + offsetX, (y) * SIZE + offsetY, label.getWidth(), label.getHeight());
     	}
     	else {
@@ -122,6 +123,7 @@ public class PacManCharacter {
 	        int newY = (y-dy) * SIZE + offsetY;
 	
 	        // Create a timer to update the position with a delay
+	        // ici on avance de 10% chanque itération.
 	        Timer updateTimer = new Timer(10, new ActionListener() {
 	            int i = 0;
 	            public void actionPerformed(ActionEvent e) {
@@ -129,6 +131,7 @@ public class PacManCharacter {
 	                i++;
 	
 	                // Stop the timer when the animation is complete
+	                // on a avancer à la nouvelle coordoner
 	                if (i >= SIZE) {
 	                    ((Timer) e.getSource()).stop();
 	                }
@@ -152,6 +155,8 @@ public class PacManCharacter {
 	 */
 	public int getY() {
 //		return (y + matrix[0].length) % matrix[0].length; 
+//		if(y%28==0) {return y-1;}
+//		if(y%28==1) {return y-2;}
 		return y;
 	}
 

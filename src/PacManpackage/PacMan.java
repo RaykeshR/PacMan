@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
+
 public class PacMan extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -21,6 +22,7 @@ public class PacMan extends JFrame {
     private double timer=0;
     private int score=0;
     private Timer timerUpdate;
+    private boolean flag=false;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -32,23 +34,23 @@ public class PacMan extends JFrame {
             }
         });
     }
-    
-    private void gameOver() {
-        // Stop the timer
+
+	private void gameOver() {
+        // Stop the timer / la c'est pour arreter le timer
+    	// Nous c'est notre main (la loop en fond)
         timerUpdate.cancel();
 
-        // Create a new JFrame for the game over window
+        // Create a new JFrame / on refait une nouvelle fenetre
         JFrame gameOverFrame = new JFrame("Game Over");
         gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create a JLabel to display "Game Over"
-        JLabel gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
+        // Create a JLabel to display "Game Over"  / on refait une nouvelle fenetre avec le texte
+        JLabel gameOverLabel = new JLabel("Game Over!", SwingConstants.CENTER);
         gameOverLabel.setFont(new Font("Arial", Font.BOLD, 36));
 
-        // Set the layout manager for the frame's content pane
         gameOverFrame.getContentPane().setLayout(new GridBagLayout());
 
-        // Add the gameOverLabel to the frame
+        // Add the gameOverLabel to the frame / ajout du label
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -74,20 +76,61 @@ public class PacMan extends JFrame {
         JLabel Score0 = new JLabel("Score : ", SwingConstants.CENTER);
         gameOverFrame.getContentPane().add( Score0 );
         
-        JLabel Score = new JLabel(""+score+"points", SwingConstants.CENTER);
+        JLabel Score = new JLabel(""+score*10+"points", SwingConstants.CENTER);
         gameOverFrame.getContentPane().add( Score );
         
-        // Set the window size and make it visible
+        // Set the window size and make it visible / ajout du label
         gameOverFrame.setSize(300, 200);
         gameOverFrame.setVisible(true);
         
-        // Close the main game window
+        // Close the main game window / Fin
         this.dispose();
     }
 
     private void Victoire() {
     	//...
-    }
+        // Stop the timer / la c'est pour arreter le timer
+    	// Nous c'est notre main (la loop en fond)
+        timerUpdate.cancel();
+
+        // Create a new JFrame for the game over window / on refait une nouvelle fenetre
+        JFrame gameOverFrame = new JFrame("Victoire");
+        gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create a JLabel to display "Game Over"  / on refait une nouvelle fenetre avec le texte
+        JLabel gameOverLabel = new JLabel("Victoire \nCONGRATULATIONS!", SwingConstants.CENTER);
+        gameOverLabel.setFont(new Font("Arial", Font.BOLD, 10));
+
+        gameOverFrame.getContentPane().setLayout(new GridBagLayout());
+
+        // Add the gameOverLabel to the frame / ajout du label
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = GridBagConstraints.REMAINDER;
+        constraints.gridheight = GridBagConstraints.REMAINDER;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        gameOverFrame.getContentPane().add(gameOverLabel, constraints);
+        
+        JLabel Temps0 = new JLabel("Temps : ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Temps0 );
+        JLabel Temps = new JLabel(""+(  (double)Math.round(timer*100)/100   )+"s", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Temps );
+        JLabel espace = new JLabel(" ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( espace );
+        JLabel Score0 = new JLabel("Score : ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Score0 );
+        JLabel Score = new JLabel(""+score*10+"points", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Score );
+        // Set the window size and make it visible / ajout du label
+        gameOverFrame.setSize(300, 200);
+        gameOverFrame.setVisible(true);
+        
+        // Close the main game window / Fin
+        this.dispose();
+    }public double getTimer() {return timer;}
+    
     public PacMan() {
     	setTitle("PacMan");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,6 +179,7 @@ public class PacMan extends JFrame {
         JButton btnUp = new JButton("^");
         btnUp.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		if(  pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY()-1,pacman.getX()) != 1) 
         		pacman.setDirection("UP");
         		fantom.setDirection("UP");
         	}
@@ -149,6 +193,7 @@ public class PacMan extends JFrame {
         JButton btnDown = new JButton("V");
         btnDown.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		if(  pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY()+1,pacman.getX()) != 1)
         		pacman.setDirection("DOWN");
         		fantom.setDirection("DOWN");
         	}
@@ -162,6 +207,7 @@ public class PacMan extends JFrame {
         JButton btnLeft = new JButton("<");
         btnLeft.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		if(  pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(),pacman.getX()-1) != 1) 
         		pacman.setDirection("LEFT");
         		fantom.setDirection("LEFT");
         	}
@@ -176,6 +222,7 @@ public class PacMan extends JFrame {
         JButton btnRight = new JButton(">");
         btnRight.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		if(  pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(),pacman.getX()+1) != 1)
         		pacman.setDirection("RIGHT");
         		fantom.setDirection("RIGHT");
         	}
@@ -197,6 +244,7 @@ public class PacMan extends JFrame {
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), "moveLeft");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveRight");
+        //On a mis le ZQSD mais aussi les touche directionnel et les boutons.
 
         actionMap.put("moveUp", new AbstractAction() {
             @Override
@@ -254,27 +302,34 @@ public class PacMan extends JFrame {
         timerUpdate.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                timer += 0.1; // Update timer value every 0.1 seconds
+                timer += 0.1; // Update timer value every 0.1 seconds / pour notre compteur de temps 
                 lblTime.setText("Time: " + String.format("%.1f", timer));
-                lblScore.setText("Score: " + String.format("%d", score));
+                int pacmanX=pacman.getX();
+                int pacmanY=pacman.getY();
+//                lblScore.setText("Score: " + String.format("%d", score) + " | " + pacmanX + ", " + pacmanY +"|"+matrix[0].length+"|"+matrix.length);
+                lblScore.setText("Score: " + String.format("%d", score*10));
                 if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {
 //                	System.exit(0);
                 	// Game over!
                     gameOver();
                     
                 }
-                else if (matrix[pacman.getX()][pacman.getY()] == 2) {
-                	matrix[pacman.getX()][pacman.getY()] = 0 ;
-                	Point p = matrixPanel.getPoint(pacman.getX(), pacman.getY());
+                
+                else if (!flag && matrix[pacmanY][pacmanX] == 2) {
+                	flag=true;
+                	matrix[pacmanY][pacmanX] = 0 ;
+                	Point p = matrixPanel.getPoint(pacmanX, pacmanY);
                 	matrixPanel.removePoint(p);
                 	score++;
+                	flag=false;
                 	
                 }
                 if(score>=100) {
+                	// Le Score vaut 100*10 Donc 1OOO point Donc victoire.
                 	Victoire();
                 }
             }
-        }, 100, 100); // Update every 100 milliseconds
+        }, 100, 100); // Update every 100 milliseconds / la boucle de fond de notre code
         
 
         

@@ -175,6 +175,28 @@ public class Fantome {
     }
 	private void updatePosition() {
 	    label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, label.getWidth(), label.getHeight());
+//	    if( x2 >= matrix[0].length - 1 || x2 <= 0 || (matrix[y2][x2 + 1] == 1 || matrix[y2][x2 - 1] == 1) && dx!=0) {
+//    		label.setBounds((x2) * SIZE + offsetX, (y2) * SIZE + offsetY, label.getWidth(), label.getHeight());
+//    	}
+//    	else {
+//	    	int newX = (x2-dx) * SIZE + offsetX;
+//	        int newY = (y2-dy) * SIZE + offsetY;
+//	
+//	        // Create a timer to update the position with a delay
+//	        Timer updateTimer = new Timer(10, new ActionListener() {
+//	            int i = 0;
+//	            public void actionPerformed(ActionEvent e) {
+//	                label.setBounds(newX + dx * i, newY + dy * i, label.getWidth(), label.getHeight());
+//	                i++;
+//	
+//	                // Stop the timer when the animation is complete
+//	                if (i >= SIZE) {
+//	                    ((Timer) e.getSource()).stop();
+//	                }
+//	            }
+//	        });
+//	        updateTimer.start();
+//        }
 	}
 	
 	
