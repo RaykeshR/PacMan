@@ -32,8 +32,8 @@ public class Fantome {
     private int x2, y2,dx,dy;
     private int[][] matrix;
     private final int SIZE = 10; // La taille de chaque case dans la matrice
-    private final int offsetX = 100;
-    private final int offsetY = 65;
+    private final int offsetX = 110;
+    private final int offsetY = 105;
     private String direction = "UP"; // Direction actuelle
     private String previousDirection = "" ;
     private Timer timer; // Timer pour le déplacement continu
@@ -55,8 +55,8 @@ public class Fantome {
         icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
         label = new JLabel(icon);
         // Position initiale de Pac-Man dans la matrice
-        x2 = 14; // colonne
-        y2 = 17; // ligne
+        x2 = 13; // colonne
+        y2 = 14; // ligne
         label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
         pane.add(label, Integer.valueOf(3));  // Ajouter Pac-Man au pane
         

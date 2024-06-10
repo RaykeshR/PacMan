@@ -145,6 +145,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pacman.setDirection("UP");
+                fantom.setDirection("UP");
             }
         });
 
@@ -152,6 +153,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pacman.setDirection("DOWN");
+                fantom.setDirection("DOWN");
             }
         });
 
@@ -159,6 +161,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pacman.setDirection("LEFT");
+                fantom.setDirection("LEFT");
             }
         });
 
@@ -166,6 +169,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pacman.setDirection("RIGHT");
+                fantom.setDirection("RIGHT");
             }
         });
 
