@@ -57,6 +57,9 @@ public class Fantome {
         // Position initiale de Pac-Man dans la matrice
         x2 = 13; // colonne
         y2 = 14; // ligne
+        Px=x2;Py=y2;
+        x=x2 * SIZE;
+        y=y2 * SIZE;
         label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
         pane.add(label, Integer.valueOf(3));  // Ajouter Pac-Man au pane
         
@@ -79,7 +82,7 @@ public class Fantome {
 	
 	
 	private void move() {
-		//direction = MouvementAuto();
+		direction = MouvementAuto();
 		dx = 0;
     	dy = 0;
         switch (direction) {
@@ -151,18 +154,36 @@ public class Fantome {
 		//label
 		int dx=(this.x-x);
 		int dy=(this.y-y);
-		if((dx)%10!=0 || (dy)%10!=0) {
-			System.out.println("erreur");
-		}else {
-			if(((dx)!=10 && (dx)!=-10) || ((dy)!=10 && (dy)!=-10)) {
-				System.out.println("erreur 2");
-			}// else : dx==10 ou -10 et dy=10 ou -10
-			this.x=x;this.y=y;
-			this.Px+=dx/10; // (this.x-x)=dx
-			this.Py+=dy/10;
-			x2=Px;
-			y2=Py;
-			updatePosition();
+//		if((dx)%10!=0 || (dy)%10!=0) {
+//			System.out.println("erreur");
+//		}else {
+//			if(((dx)!=10 && (dx)!=-10) || ((dy)!=10 && (dy)!=-10)) {
+//				System.out.println("erreur 2");
+//			}// else : dx==10 ou -10 et dy=10 ou -10
+//			this.x=x;this.y=y;
+//			this.Px+=dx/10; // (this.x-x)=dx
+//			this.Py+=dy/10;
+//			x2=Px;
+//			y2=Py;
+//			updatePosition();
+//		}
+		if ((dx) % 10 != 0 || (dy) % 10 != 0) {
+		    System.out.println("erreur");
+		} else {
+		    if (dx == 0 && dy == 0) {
+		        // Pas de déplacement, on ne fait rien
+		    	 System.out.println("erreur3");
+		    } else if (((dx) != 10 && (dx) != -10) || ((dy) != 10 && (dy) != -10)) {
+		        System.out.println("erreur 2");
+		    } else {
+		        this.x = x;
+		        this.y = y;
+		        this.Px += dx / 10; // (this.x-x)=dx
+		        this.Py += dy / 10;
+		        x2 = Px;
+		        y2 = Py;
+		        updatePosition();
+		    }
 		}
 		
 	}
@@ -228,7 +249,7 @@ public class Fantome {
 	            case RIGHT:
 	                return "RIGHT";
 			default:
-				return "";
+				return "UP";
 	        }
 		}else {
 			// Choisi une direction parmi celle disponible.
@@ -242,7 +263,7 @@ public class Fantome {
 			    
 			}else{
 				// Bloquer pas de sens possible
-				return "";
+				return "UP";
 			}
 			
 		}
