@@ -142,6 +142,8 @@ public class PacManCharacter {
 	 * @return the x
 	 */
 	public int getX() {
+		//return (x + matrix.length) % matrix.length; 
+		
 		return x;
 	}
 
@@ -149,6 +151,7 @@ public class PacManCharacter {
 	 * @return the y
 	 */
 	public int getY() {
+//		return (y + matrix[0].length) % matrix[0].length; 
 		return y;
 	}
 
