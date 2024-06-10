@@ -19,6 +19,7 @@ public class PacMan extends JFrame {
     private Fantome fantom;
     private GridBagConstraints gbc_1;
     private double timer=0;
+    private int score=0;
     private Timer timerUpdate;
 
     public static void main(String[] args) {
@@ -66,6 +67,16 @@ public class PacMan extends JFrame {
 //        JLabel Temps2 = new JLabel("temps"+timer+"s", SwingConstants.CENTER);
 //        gameOverFrame.getContentPane().add(Temps2);
 
+
+        JLabel espace = new JLabel(" ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( espace );
+        
+        JLabel Score0 = new JLabel("Score : ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Score0 );
+        
+        JLabel Score = new JLabel(""+score+"points", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Score );
+        
         // Set the window size and make it visible
         gameOverFrame.setSize(300, 200);
         gameOverFrame.setVisible(true);
@@ -74,6 +85,9 @@ public class PacMan extends JFrame {
         this.dispose();
     }
 
+    private void Victoire() {
+    	//...
+    }
     public PacMan() {
     	setTitle("PacMan");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -225,7 +239,7 @@ public class PacMan extends JFrame {
         });
 
 
-        JLabel lblScore = new JLabel("Score: 0");
+        JLabel lblScore = new JLabel("Score: "+score);
         lblScore.setForeground(Color.WHITE);
         lblScore.setFont(new Font("Tahoma", Font.BOLD, 14));
 
@@ -242,6 +256,7 @@ public class PacMan extends JFrame {
             public void run() {
                 timer += 0.1; // Update timer value every 0.1 seconds
                 lblTime.setText("Time: " + String.format("%.1f", timer));
+                lblScore.setText("Score: " + String.format("%d", score));
                 if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {
 //                	System.exit(0);
                 	// Game over!
@@ -252,7 +267,11 @@ public class PacMan extends JFrame {
                 	matrix[pacman.getX()][pacman.getY()] = 0 ;
                 	Point p = matrixPanel.getPoint(pacman.getX(), pacman.getY());
                 	matrixPanel.removePoint(p);
+                	score++;
                 	
+                }
+                if(score>=100) {
+                	Victoire();
                 }
             }
         }, 100, 100); // Update every 100 milliseconds
