@@ -174,7 +174,7 @@ public class Fantome {
 		        // Pas de déplacement, on ne fait rien
 		    	 System.out.println("erreur3");
 		    } else if (((dx) != 10 && (dx) != -10) || ((dy) != 10 && (dy) != -10)) {
-		        System.out.println("erreur 2");
+		        //System.out.println("erreur 2");
 		    } else {
 		        this.x = x;
 		        this.y = y;
@@ -410,6 +410,34 @@ public class Fantome {
 	 */
 	public void setTaille(int taille) {
 		this.taille = taille;
+	}
+
+	/**
+	 * @return the x2
+	 */
+	public int getX2() {
+		return x2;
+	}
+
+	/**
+	 * @return the y2
+	 */
+	public int getY2() {
+		return y2;
+	}
+
+	/**
+	 * @param x2 the x2 to set
+	 */
+	public void setX2(int x2) {
+		this.x2 = x2;
+	}
+
+	/**
+	 * @param y2 the y2 to set
+	 */
+	public void setY2(int y2) {
+		this.y2 = y2;
 	}
 	
 	

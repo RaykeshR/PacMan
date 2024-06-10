@@ -63,6 +63,7 @@ public class PacMan extends JFrame {
         
         pacman = new PacManCharacter(layeredPane, matrix);  
         fantom  = new Fantome(layeredPane, matrix);  
+        if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {System.exit(0);}
         
         JPanel controlPanel = new JPanel();
         controlPanel.setBackground(Color.BLACK);
@@ -144,7 +145,9 @@ public class PacMan extends JFrame {
         actionMap.put("moveUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pacman.setDirection("UP");
+            	if(  pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY()-1,pacman.getX()) == 0) {
+            		pacman.setDirection("UP");
+                }
                 fantom.setDirection("UP");
             }
         });
@@ -152,7 +155,9 @@ public class PacMan extends JFrame {
         actionMap.put("moveDown", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pacman.setDirection("DOWN");
+            	if(  pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY()+1,pacman.getX()) == 0) {
+            		pacman.setDirection("DOWN");
+            	}
                 fantom.setDirection("DOWN");
             }
         });
@@ -160,7 +165,9 @@ public class PacMan extends JFrame {
         actionMap.put("moveLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pacman.setDirection("LEFT");
+            	if(  pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(),pacman.getX()-1) == 0) {
+            		pacman.setDirection("LEFT");
+                }
                 fantom.setDirection("LEFT");
             }
         });
@@ -168,7 +175,9 @@ public class PacMan extends JFrame {
         actionMap.put("moveRight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pacman.setDirection("RIGHT");
+            	if(  pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(),pacman.getX()+1) == 0) {
+            		pacman.setDirection("RIGHT");
+                }
                 fantom.setDirection("RIGHT");
             }
         });
@@ -191,6 +200,9 @@ public class PacMan extends JFrame {
             public void run() {
                 timer += 0.1; // Update timer value every 0.1 seconds
                 lblTime.setText("Time: " + String.format("%.1f", timer));
+                if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {
+                	System.exit(0);
+                }
             }
         }, 100, 100); // Update every 100 milliseconds
         

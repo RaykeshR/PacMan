@@ -161,4 +161,21 @@ public class PacManCharacter {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public int getElementMatrix(int x,int y) {
+		//...
+		return matrix[x][y];
+	}
+	
+	public int getMatrixLenghtMoinsUn() {
+		//...
+		return matrix.length - 1;
+	}
+	public int getMatrix0LenghtMoinsUn() {
+		//...
+		return matrix[0].length - 1;
+	}
+	
+	
+	
 }
