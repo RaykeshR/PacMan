@@ -57,7 +57,7 @@ public class PacMan extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         gameOverFrame.getContentPane().add(gameOverLabel, constraints);
 
-        JLabel Temps = new JLabel(""+((int)(((double)Math.round(timer*100))/100))+"s", SwingConstants.CENTER);
+        JLabel Temps = new JLabel(""+(  (double)Math.round(timer*100)/100   )+"s", SwingConstants.CENTER);
         gameOverFrame.getContentPane().add(Temps);
 //        JLabel Temps2 = new JLabel("temps"+timer+"s", SwingConstants.CENTER);
 //        gameOverFrame.getContentPane().add(Temps2);
