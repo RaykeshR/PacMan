@@ -14,12 +14,12 @@ public class Point {
     private final int offsetY = 105;
 //    private boolean EnCoursDeDigestion;
 //    // Position dans le Plateau (Matrice)
-//	int Px,Py;
+	int Px,Py;
 
 
     public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = x;Px=x;
+        this.y = y;Py=y;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/rond-jaune.png"));
         icon = resizeImageIcon(icon, 3, 3);
         label = new JLabel(icon);
@@ -114,44 +114,44 @@ public class Point {
 //	    }
 //	    return points;
 //	}
-//
-//	private int count(int[][] matrix, int value) {
-//	    int count = 0;
-//	    for (int i = 0; i < matrix.length; i++) {
-//	        for (int j = 0; j < matrix[i].length; j++) {
-//	            if (matrix[i][j] == value) {
-//	                count++;
-//	            }
-//	        }
-//	    }
-//	    return count;
-//	}
-//	
-//	
-//	/**
-//	 * 
-//	 * renvoie les objets de la classe point correspondont aux Gros point sur le plateau.
-//	 * n=10
-//	 */
-//	public Point[] LesBonus(int n) {
-//		Plateau get = new Plateau();
-//	    int[][] P = get.getPlateau();
-//	    int nombreELements = count(P, 4);
-//	    Point[] points = new Point[nombreELements];
-//	    int index = 0;
-//	    for (int i = 0; i < P.length; i++) {
-//	        for (int j = 0; j < P[i].length; j++) {
-//	            if (P[i][j] == 4) {
-//	                points[index] = new Point(i * n, j * n);
-//	                points[index].Px = i;
-//	                points[index].Py = j;
-//	                index++;
-//	            }
-//	        }
-//	    }
-//	    return points;
-//	}
-//
+
+	private int count(int[][] matrix, int value) {
+	    int count = 0;
+	    for (int i = 0; i < matrix.length; i++) {
+	        for (int j = 0; j < matrix[i].length; j++) {
+	            if (matrix[i][j] == value) {
+	                count++;
+	            }
+	        }
+	    }
+	    return count;
+	}
+	
+	
+	/**
+	 * 
+	 * renvoie les objets de la classe point correspondont aux Gros point sur le plateau.
+	 * n=10
+	 */
+	public Point[] LesBonus(int n) {
+		Plateau get = new Plateau();
+	    int[][] P = get.getPlateau();
+	    int nombreELements = count(P, 4);
+	    Point[] points = new Point[nombreELements];
+	    int index = 0;
+	    for (int i = 0; i < P.length; i++) {
+	        for (int j = 0; j < P[i].length; j++) {
+	            if (P[i][j] == 4) {
+	                points[index] = new Point(i * n, j * n);
+	                points[index].Px = i;
+	                points[index].Py = j;
+	                index++;
+	            }
+	        }
+	    }
+	    return points;
+	}
+
 
 
 }

@@ -52,7 +52,8 @@ public class MatrixPanel extends JPanel {
         }
 
         // Draw points for cells with value 2
-        for (Point point : points) {
+        List<Point> points3 = new ArrayList<>(points); // copie de la liste pour enlever des bug
+        for (Point point : points3) {
 //        	if (point.getX()!=0 || point.getY()!=0) {
 	            JLabel label = point.getLabel();
 	            label.setLocation(point.getX() * size+3, point.getY() * size+3);
@@ -84,7 +85,8 @@ public class MatrixPanel extends JPanel {
      * @return
      */
     public Point getPoint(int x, int y) {
-        for (Point point : points) {
+    	List<Point> points2 = new ArrayList<>(points); // copie de la liste pour enlever des bug du à une écriture et lecture en simultané.
+        for (Point point : points2) {
             if (point.getX() == x && point.getY() == y) {
                 return point;
             }

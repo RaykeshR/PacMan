@@ -67,6 +67,14 @@ class PacManTest {
 			Assertions.assertFalse(A>10, "getRandomNumber");
 		}
 	}
+	@Test
+	void test3() {
+		PacMan p = new PacMan();
+		p.setVisible(true);
+		p.main(null);
+		//TODO
+	}
+	
 	
 	
 }
