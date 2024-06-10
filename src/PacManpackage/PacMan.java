@@ -57,8 +57,12 @@ public class PacMan extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         gameOverFrame.getContentPane().add(gameOverLabel, constraints);
 
+        JLabel Temps0 = new JLabel("Temps : ", SwingConstants.CENTER);
+        gameOverFrame.getContentPane().add( Temps0 );
+        
         JLabel Temps = new JLabel(""+(  (double)Math.round(timer*100)/100   )+"s", SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(Temps);
+        gameOverFrame.getContentPane().add( Temps );
+        
 //        JLabel Temps2 = new JLabel("temps"+timer+"s", SwingConstants.CENTER);
 //        gameOverFrame.getContentPane().add(Temps2);
 
@@ -183,7 +187,7 @@ public class PacMan extends JFrame {
         actionMap.put("moveUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if(  pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY()-1,pacman.getX()) == 0) {
+            	if(  pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY()-1,pacman.getX()) != 1) {
             		pacman.setDirection("UP");
                 }
                 fantom.setDirection("UP");
@@ -193,7 +197,7 @@ public class PacMan extends JFrame {
         actionMap.put("moveDown", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if(  pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY()+1,pacman.getX()) == 0) {
+            	if(  pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY()+1,pacman.getX()) != 1) {
             		pacman.setDirection("DOWN");
             	}
                 fantom.setDirection("DOWN");
@@ -203,7 +207,7 @@ public class PacMan extends JFrame {
         actionMap.put("moveLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if(  pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(),pacman.getX()-1) == 0) {
+            	if(  pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(),pacman.getX()-1) != 1) {
             		pacman.setDirection("LEFT");
                 }
                 fantom.setDirection("LEFT");
@@ -213,7 +217,7 @@ public class PacMan extends JFrame {
         actionMap.put("moveRight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if(  pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(),pacman.getX()+1) == 0) {
+            	if(  pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(),pacman.getX()+1) != 1) {
             		pacman.setDirection("RIGHT");
                 }
                 fantom.setDirection("RIGHT");

@@ -110,7 +110,7 @@ public class PacManCharacter {
 //        for(int i=0;i<SIZE;i++) {
 //        	label.setBounds((x-dx) * SIZE + offsetX + dx*i, (y-dy) * SIZE + offsetY + dy*i, label.getWidth(), label.getHeight());
 //        }
-    	if( x >= matrix[0].length - 1 || x <= 0 || (matrix[y][x + 1] != 0 || matrix[y][x - 1] != 0) && dx!=0) {
+    	if( x >= matrix[0].length - 1 || x <= 0 || (matrix[y][x + 1] == 1 || matrix[y][x - 1] == 1) && dx!=0) {
     		label.setBounds((x) * SIZE + offsetX, (y) * SIZE + offsetY, label.getWidth(), label.getHeight());
     	}
     	else {
