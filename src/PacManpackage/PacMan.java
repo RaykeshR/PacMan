@@ -60,6 +60,9 @@ public class PacMan extends JFrame {
         // Set the window size and make it visible
         gameOverFrame.setSize(300, 200);
         gameOverFrame.setVisible(true);
+        
+        // Close the main game window
+        this.dispose();
     }
 
     public PacMan() {
@@ -234,6 +237,7 @@ public class PacMan extends JFrame {
 //                	System.exit(0);
                 	// Game over!
                     gameOver();
+                    
                 }
             }
         }, 100, 100); // Update every 100 milliseconds
