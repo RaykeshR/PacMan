@@ -72,4 +72,14 @@ public class MatrixPanel extends JPanel {
     public int getScore() {
         return score;
     }
+    
+    public Point getPoint(int x, int y) {
+        for (Point point : points) {
+            if (point.getX() == x && point.getY() == y) {
+                return point;
+            }
+        }
+        return null; // return null if no point is found at the given coordinates
+    }
+    
 }

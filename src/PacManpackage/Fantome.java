@@ -2,6 +2,8 @@ package PacManpackage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -37,6 +39,7 @@ public class Fantome {
     private String direction = "UP"; // Direction actuelle
     private String previousDirection = "" ;
     private Timer timer; // Timer pour le déplacement continu
+    private List<Integer> casesAccessibles;
 	
 	
 	public Fantome(JLabel LeLabelDuFantome) {
@@ -51,6 +54,7 @@ public class Fantome {
 	
 	public Fantome(JLayeredPane pane, int[][] matrix) {
         this.matrix = matrix;
+        casesAccessibles = Arrays.asList(0, 2);
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/fantome1.png"));
         icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
         label = new JLabel(icon);
@@ -106,8 +110,40 @@ public class Fantome {
 		updatePosition();
 		
 	}
+//    public void moveLeft() {
+//        if (x2 > 0 && matrix[y2][x2 - 1] == 0) {
+//            x2--;
+//        } else if (x2 == 0) {
+//            x2 = matrix[0].length - 1; // Réapparaître à droite
+//        }
+//        updatePosition();
+//    }
+//
+//    public void moveRight() {
+//        if (x2 < matrix[0].length - 1 && matrix[y2][x2 + 1] == 0) {
+//            x2++;
+//        } else if (x2 == matrix[0].length - 1) {
+//            x2 = 0; // Réapparaître à gauche
+//        }
+//        updatePosition();
+//    }
+//
+//    public void moveUp() {
+//        if (y2 > 0 && matrix[y2 - 1][x2] == 0) {
+//            y2--;
+//            updatePosition();
+//        }
+//    }
+//
+//    public void moveDown() {
+//        if (y2 < matrix.length - 1 && matrix[y2 + 1][x2] == 0) {
+//            y2++;
+//            updatePosition();
+//        }
+//    }
+    
     public void moveLeft() {
-        if (x2 > 0 && matrix[y2][x2 - 1] == 0) {
+        if (x2 > 0 && casesAccessibles.contains(matrix[y2][x2 - 1])) {
             x2--;
         } else if (x2 == 0) {
             x2 = matrix[0].length - 1; // Réapparaître à droite
@@ -116,7 +152,7 @@ public class Fantome {
     }
 
     public void moveRight() {
-        if (x2 < matrix[0].length - 1 && matrix[y2][x2 + 1] == 0) {
+        if (x2 < matrix[0].length - 1 && casesAccessibles.contains(matrix[y2][x2 + 1])) {
             x2++;
         } else if (x2 == matrix[0].length - 1) {
             x2 = 0; // Réapparaître à gauche
@@ -125,14 +161,14 @@ public class Fantome {
     }
 
     public void moveUp() {
-        if (y2 > 0 && matrix[y2 - 1][x2] == 0) {
+        if (y2 > 0 && casesAccessibles.contains(matrix[y2 - 1][x2])) {
             y2--;
             updatePosition();
         }
     }
 
     public void moveDown() {
-        if (y2 < matrix.length - 1 && matrix[y2 + 1][x2] == 0) {
+        if (y2 < matrix.length - 1 && casesAccessibles.contains( matrix[y2 + 1][x2])) {
             y2++;
             updatePosition();
         }

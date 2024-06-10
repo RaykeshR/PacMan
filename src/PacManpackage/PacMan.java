@@ -248,6 +248,12 @@ public class PacMan extends JFrame {
                     gameOver();
                     
                 }
+                else if (matrix[pacman.getX()][pacman.getY()] == 2) {
+                	matrix[pacman.getX()][pacman.getY()] = 0 ;
+                	Point p = matrixPanel.getPoint(pacman.getX(), pacman.getY());
+                	matrixPanel.removePoint(p);
+                	
+                }
             }
         }, 100, 100); // Update every 100 milliseconds
         
