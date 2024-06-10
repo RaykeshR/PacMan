@@ -31,6 +31,36 @@ public class PacMan extends JFrame {
             }
         });
     }
+    
+    private void gameOver() {
+        // Stop the timer
+        timerUpdate.cancel();
+
+        // Create a new JFrame for the game over window
+        JFrame gameOverFrame = new JFrame("Game Over");
+        gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create a JLabel to display "Game Over"
+        JLabel gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
+        gameOverLabel.setFont(new Font("Arial", Font.BOLD, 36));
+
+        // Set the layout manager for the frame's content pane
+        gameOverFrame.getContentPane().setLayout(new GridBagLayout());
+
+        // Add the gameOverLabel to the frame
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = GridBagConstraints.REMAINDER;
+        constraints.gridheight = GridBagConstraints.REMAINDER;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        gameOverFrame.getContentPane().add(gameOverLabel, constraints);
+
+        // Set the window size and make it visible
+        gameOverFrame.setSize(300, 200);
+        gameOverFrame.setVisible(true);
+    }
 
     public PacMan() {
     	setTitle("PacMan");
@@ -201,7 +231,9 @@ public class PacMan extends JFrame {
                 timer += 0.1; // Update timer value every 0.1 seconds
                 lblTime.setText("Time: " + String.format("%.1f", timer));
                 if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {
-                	System.exit(0);
+//                	System.exit(0);
+                	// Game over!
+                    gameOver();
                 }
             }
         }, 100, 100); // Update every 100 milliseconds
@@ -213,5 +245,8 @@ public class PacMan extends JFrame {
         statusPanel.add(lblScore);
         statusPanel.add(lblTime);
         controlPanel.add(statusPanel, BorderLayout.SOUTH);
+        
+        
+        
     }
 }
