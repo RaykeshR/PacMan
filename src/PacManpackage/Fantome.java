@@ -1,17 +1,44 @@
 package PacManpackage;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.Timer;
+
+//import javax.swing.JLabel;
+//import javax.swing.JLayeredPane;
+//import javax.swing.ImageIcon;
+import java.awt.Image;
+//import javax.swing.Timer;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 
 public class Fantome {
 
-	JLabel label;
-	Sens S;
+	//JLabel label;
+	Sens S = Sens.UP;
 	//position : en coordonné 
 	int x,y;
 	// Position dans le Plateau (Matrice)
 	int Px,Py;
 	//taille Optionnel : 
 	private int taille;
+	
+	
+	private JLabel label;
+    private int x2, y2,dx,dy;
+    private int[][] matrix;
+    private final int SIZE = 10; // La taille de chaque case dans la matrice
+    private final int offsetX = 100;
+    private final int offsetY = 65;
+    private String direction = "UP"; // Direction actuelle
+    private String previousDirection = "" ;
+    private Timer timer; // Timer pour le déplacement continu
+	
+	
 	public Fantome(JLabel LeLabelDuFantome) {
 		this.label = LeLabelDuFantome;
 	}
@@ -21,6 +48,97 @@ public class Fantome {
 		this.x=x;this.y=y;
 		this.Px=Px;this.Py=Py;
 	}
+	
+	public Fantome(JLayeredPane pane, int[][] matrix) {
+        this.matrix = matrix;
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/fantome1.png"));
+        icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
+        label = new JLabel(icon);
+        // Position initiale de Pac-Man dans la matrice
+        x2 = 14; // colonne
+        y2 = 17; // ligne
+        label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
+        pane.add(label, Integer.valueOf(3));  // Ajouter Pac-Man au pane
+        
+        timer = new Timer(200, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                move();
+            }
+        });
+        timer.start(); // Démarrer le timer
+    }
+
+	private ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
+	        Image img = icon.getImage();
+	        Image resizedImage = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+	        return new ImageIcon(resizedImage);
+	}
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+	
+	
+	private void move() {
+		//direction = MouvementAuto();
+		dx = 0;
+    	dy = 0;
+        switch (direction) {
+            case "LEFT":
+            	dx=-1;
+                moveLeft();
+                break;
+            case "RIGHT":
+            	dx=1;
+                moveRight();
+                break;
+            case "UP":
+            	dy=-1;
+                moveUp();
+                break;
+            case "DOWN":
+            	dy=1;
+                moveDown();
+                break;
+        }
+		updatePosition();
+		
+	}
+    public void moveLeft() {
+        if (x2 > 0 && matrix[y2][x2 - 1] == 0) {
+            x2--;
+        } else if (x2 == 0) {
+            x2 = matrix[0].length - 1; // Réapparaître à droite
+        }
+        updatePosition();
+    }
+
+    public void moveRight() {
+        if (x2 < matrix[0].length - 1 && matrix[y2][x2 + 1] == 0) {
+            x2++;
+        } else if (x2 == matrix[0].length - 1) {
+            x2 = 0; // Réapparaître à gauche
+        }
+        updatePosition();
+    }
+
+    public void moveUp() {
+        if (y2 > 0 && matrix[y2 - 1][x2] == 0) {
+            y2--;
+            updatePosition();
+        }
+    }
+
+    public void moveDown() {
+        if (y2 < matrix.length - 1 && matrix[y2 + 1][x2] == 0) {
+            y2++;
+            updatePosition();
+        }
+    }
+	private void updatePosition() {
+	    label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, label.getWidth(), label.getHeight());
+	}
+	
+	
 	
 	/**
 	 * @Fonctionnement : va à une position x,y 
@@ -42,6 +160,9 @@ public class Fantome {
 			this.x=x;this.y=y;
 			this.Px+=dx/10; // (this.x-x)=dx
 			this.Py+=dy/10;
+			x2=Px;
+			y2=Py;
+			updatePosition();
 		}
 		
 	}
@@ -87,53 +208,75 @@ public class Fantome {
 	/**
 	 * @Fonctionnement : Définie le mouvement aléatoire des fantômes 
 	 */
-	void MouvementAuto() {
+	String MouvementAuto() {
 		int Decision = getRandomNumber(1,100); // [ 1 , 100 ] 
 		int[][] M=mur(); 
 		if( M[1+S.getDx()][1+S.getDy()]==0 && Decision >= 95 ) {
 			//Si il n'y a pas de mur dans le sens courant on continue (95% du temps)
-			int n =10; // déplacement de 10 Case
+			//int n =10; // déplacement de 10 Case
+			int n =SIZE; // déplacement de 10 Case
 			Goto(x+S.getDx()*n,y+S.getDy()*n); 
+//			x+=S.getDx();
+//			y+=S.getDy();
+			switch (S) {
+	            case UP:
+	                return "UP";
+	            case DOWN:
+	                return "DOWN";
+	            case LEFT:
+	                return "LEFT";
+	            case RIGHT:
+	                return "RIGHT";
+			default:
+				return "";
+	        }
 		}else {
 			// Choisi une direction parmi celle disponible.
-			int SensPossible = (1-M[0][1]) + (1-M[1][0]) + (1-M[2][1]) + (1-M[1][2]); 
-			Sens[] NouveauSens = new Sens[SensPossible]; 
+			int SensPossible = (1-M[0][1]) + (1-M[1][0]) + (1-M[2][1]) + (1-M[1][2]); // Le nombre de sens possible
 			if (SensPossible!=0) {
-				int DecisionNouveauSens = getRandomNumber(0,SensPossible-1); // [ 0 , SensPossible [ 
-				// Remplir NouveauSens
-				int index=0; 
-				if (M[0][1]==0) {
-					// Case du haut disponible
-					NouveauSens[index] = Sens.UP; 
-					index++; 
-				}
-				if (M[1][0]==0) {
-			        // Case de la gauche disponible
-			        NouveauSens[index] = Sens.LEFT; 
-			        index++; 
-			    }
-			    if (M[2][1]==0) {
-			        // Case du bas disponible
-			        NouveauSens[index] = Sens.DOWN; 
-			        index++; 
-			    }
-			    if (M[1][2]==0) {
-			        // Case de la droite disponible
-			        NouveauSens[index] = Sens.RIGHT; 
-			        index++; 
-			    }
-			    // Nouvelle direction choisi
-			    S = NouveauSens[DecisionNouveauSens]; 
+			    S = NouveauSensChoisiAuHasard(SensPossible,M); 
 			    
-			    MouvementAuto(); 
+			    return MouvementAuto(); 
 			    // Case disponible donc mouvement
 			    // Boucle infinie en cas de bug ou d'erreur ! ! !
 			    
 			}else{
 				// Bloquer pas de sens possible
+				return "";
 			}
 			
 		}
+	}
+	
+	
+	
+	Sens NouveauSensChoisiAuHasard(int SensPossible,int[][] M) {
+		Sens[] NouveauSens = new Sens[SensPossible]; // Contiendra les différents sens possible
+		int DecisionNouveauSens = getRandomNumber(0,SensPossible-1); // [ 0 , SensPossible [ 
+		// Remplir NouveauSens
+		int index=0; 
+		if (M[0][1]==0) {
+			// Case du haut disponible
+			NouveauSens[index] = Sens.UP; 
+			index++; 
+		}
+		if (M[1][0]==0) {
+	        // Case de la gauche disponible
+	        NouveauSens[index] = Sens.LEFT; 
+	        index++; 
+	    }
+	    if (M[2][1]==0) {
+	        // Case du bas disponible
+	        NouveauSens[index] = Sens.DOWN; 
+	        index++; 
+	    }
+	    if (M[1][2]==0) {
+	        // Case de la droite disponible
+	        NouveauSens[index] = Sens.RIGHT; 
+	        index++; 
+	    }
+	    // Nouvelle direction choisi
+	    return NouveauSens[DecisionNouveauSens];
 	}
 	
 	/**
