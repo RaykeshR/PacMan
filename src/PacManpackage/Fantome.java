@@ -229,7 +229,7 @@ public class Fantome {
 			//Si il n'y a pas de mur dans le sens courant on continue 
 			//int n =10; // déplacement de 10 Case
 			int n =SIZE; // déplacement de 10 Case
-			Goto(x+S.getDx()*n,y+S.getDy()*n); 
+			AllerA(x+S.getDx()*n,y+S.getDy()*n); 
 //			x+=S.getDx();
 //			y+=S.getDy();
 			switch (S) {
