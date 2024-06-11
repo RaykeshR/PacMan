@@ -1,6 +1,7 @@
 package PacManpackage;
 
 public class Plateau {
+	//creation en attributs des matrices représentant notre plateau
 	//int[][] P = new int[28][31]
 	/*int[][] P = {		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 						{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -33,7 +34,8 @@ public class Plateau {
 						{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 						{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};*/
-
+	//creation d'une matrices représentant notre plateau avec le 1 pour les murs, le 0 pour les chemins vide et le 2 pour le chemin avec des points
+	//nous utiliserons cette matrice pour la suite de notre projet
 	int[][] P_binaire =
 		{	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1  },
@@ -67,7 +69,7 @@ public class Plateau {
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1  },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1  }} ;
 
-	
+	//cette matrice sert pour le deplacement de notre fantome
 	int[][] P_original = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
 	{1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1}, 
@@ -83,7 +85,7 @@ public class Plateau {
 	{0, 0, 0, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0}, 
 	{0, 0, 0, 0, 0, 1, 3, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0}, 
 	{1, 1, 1, 1, 1, 1, 3, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 1, 1, 1, 1, 1}, 
-	{2, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 9, 0, 8, 0,10, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2}, 
+	{2, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 9, 0, 10, 0,8, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2}, 
 	{1, 1, 1, 1, 1, 1, 3, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 1, 1, 1, 1, 1}, 
 	{0, 0, 0, 0, 0, 1, 3, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0}, 
 	{0, 0, 0, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0}, 
@@ -101,38 +103,34 @@ public class Plateau {
 	{1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1}, 
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
 
-	/**
-	 * C'est notre plateau : 
-	 * @return the p_original
-	 */
+	// getter pour retourner p_original
 	public int[][] getPlateau() {
 		return P_original;
 	}
 
-	/**
-	 * @param p_original C'est notre plateau : the p_original to set
-	 */
+	// setter pour retourner p_original
 	public void setPlateau(int[][] p_original) {
 		P_original = p_original;
 	}
 
-	/**
-	 * @param p_original C'est notre plateau : the p_original to set
-	 */
+	// setter pour retourner p_original
 	public void setPlateau(int x,int y,int valeur) {
 		P_original[x][y] = valeur;
 	}
 
+	// getter pour retourner P_binaire
 	int[][] getPlateauBinaire() {
 		return P_binaire ;
 	}
-	
+
+	// getter pour retourner les points
 	int getPoint(int x, int y) {
 		int modX = (x + P_original.length) % P_original.length; 
 		int modY = (y + P_original[0].length) % P_original[0].length; 
 		return P_original[modX][modY]; 
 	}
 
+	// getter pour retourner une matrice de 3*3
 	int[][] getMat3(int x, int y) {
 		int[][] mat3 ={
 				{getPoint(x-1, y-1),getPoint(x-1, y),getPoint(x-1, y+1)},
@@ -141,7 +139,8 @@ public class Plateau {
 				} ;
 		return mat3 ;
 	}
-	
+
+	// methode pour afficher la matrice
 	void printMat(int[][] mat) {
 		System.out.print("{ ");
 		for(int i=0; i<mat.length; i++) {
@@ -153,7 +152,8 @@ public class Plateau {
 		}
 		System.out.println(" }");
 	}
-	
+
+	//methode pour permettre de changer la matrice comme certaine valeur
 	int[][] changeMat(int[][] mat) {
 		for(int i=0; i<mat.length; i++) {
 			for(int j=0; j<mat[i].length; j++) {
@@ -164,5 +164,4 @@ public class Plateau {
 		}
 		return mat ;
 	}
-	
 }
