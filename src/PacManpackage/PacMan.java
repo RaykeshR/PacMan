@@ -15,7 +15,7 @@ public class PacMan extends JFrame {
     // initialisation des attributs de la classe pacman
     private JPanel contentPane;
     private PacManCharacter pacman;
-    private Fantome fantom; // Un objet de la 
+    private Fantome fantom; // Un objet de la classe fantom
     private GridBagConstraints grille_1;
     private double timer = 0; // Le temps en seconde c'est un normbre réel
     private int score = 0;// le score du joureur
