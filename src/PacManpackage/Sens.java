@@ -10,9 +10,9 @@ public enum Sens {
 	    private final int dx;
 	    private final int dy;
 
-	    Sens(int dx, int dy) {
-	        this.dx = dx;
-	        this.dy = dy;
+	    Sens(int a, int b) {
+	        this.dx = a;
+	        this.dy = b;
 	    }
 
 	    public Sens RotationAntiHoraire() {
@@ -60,9 +60,7 @@ public enum Sens {
 
 
 //Example
-
 /*
-
 public class PacMan {
     private Direction direction;
 
@@ -70,17 +68,16 @@ public class PacMan {
         int newX = getX() + direction.getDx();
         int newY = getY() + direction.getDy();
         // update the position of the Pac-Man
-    }
+	}
 
-    public void turnLeft() {
-        direction = direction.turnLeft();
-    }
+	public void turnLeft() {
+		direction = direction.turnLeft();
+	}
 
-    public void turnRight() {
-        direction = direction.turnRight();
-    }
+	public void turnRight() {
+		direction = direction.turnRight();
+	}
 }
-
 */
 
 
