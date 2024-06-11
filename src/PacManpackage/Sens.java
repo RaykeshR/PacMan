@@ -1,21 +1,21 @@
 package PacManpackage;
 
 public enum Sens {
-	    NONE(0, 0), 
-	    UP(-1, 0), 
-	    DOWN(1, 0), 
-	    LEFT(0, -1), 
-	    RIGHT(0, 1); 
+	    NONE(0, 0), //le fantome ne bouge pas
+	    UP(-1, 0),  //le fantome monte
+	    DOWN(1, 0), //le fantome ddescend
+	    LEFT(0, -1), //le fantome va à gauche
+	    RIGHT(0, 1);  //le fantome va à droite
 
 	    private final int dx;
 	    private final int dy;
 
-	    Sens(int a, int b) {
+	    Sens(int a, int b) { //constructeur
 	        this.dx = a;
 	        this.dy = b;
 	    }
 
-	    public Sens RotationAntiHoraire() {
+	    public Sens RotationAntiHoraire() { //machine à état tourner dans le sens horaire
 	        switch (this) {
 	            case UP:
 	                return LEFT;
@@ -30,7 +30,7 @@ public enum Sens {
 	        }
 	    }
 
-	    public Sens RotationHoraire() {
+	    public Sens RotationHoraire() { //machine à état tourner dans le sens antihoraire
 	        switch (this) {
 	            case UP:
 	                return RIGHT;
@@ -48,11 +48,11 @@ public enum Sens {
 	       return RIGHT; 
 	    }
 
-	    public int getDx() {
+	    public int getDx() { //obtenir dx
 	        return dx;
 	    }
 
-	    public int getDy() {
+	    public int getDy() { //obtenir dy
 	        return dy;
 	    }
 
