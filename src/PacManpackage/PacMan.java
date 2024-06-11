@@ -78,7 +78,7 @@ public class PacMan extends JFrame {
         JLabel scoreValue = new JLabel(score * 10 + " points", SwingConstants.CENTER);
         gameOverFrameLafenetredeGameOver.getContentPane().add(scoreValue);
 
-        gameOverFrameLafenetredeGameOver.setSize(300, 200);
+        gameOverFrameLafenetredeGameOver.setSize(300*2, 200*2);
         gameOverFrameLafenetredeGameOver.setVisible(true);
         this.dispose();
     }
@@ -89,7 +89,7 @@ public class PacMan extends JFrame {
         victoryFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel victoryLabel = new JLabel("Victoire\nCONGRATULATIONS!", SwingConstants.CENTER);
-        victoryLabel.setFont(new Font("Arial", Font.BOLD, 10));
+        victoryLabel.setFont(new Font("Arial", Font.BOLD, 18));
         victoryFrame.getContentPane().setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -117,7 +117,7 @@ public class PacMan extends JFrame {
         JLabel scoreValue = new JLabel(score * 10 + " points", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(scoreValue);
 
-        victoryFrame.setSize(300, 200);
+        victoryFrame.setSize(300*2, 200*2);
         victoryFrame.setVisible(true);
         this.dispose();
     }
