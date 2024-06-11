@@ -110,8 +110,15 @@ public class Point {
 //	    return points;
 //	}
 //methode pour compter dans la matrice le nombre de fois qu'il y'a valeur
+/**
+ * Compte les occurence d'une valeur dans la matrice.
+ * @param matrix
+ * @param valeur
+ * @return
+ */
 	private int countLeCompteur(int[][] matrix, int valeur) {
 	    int countLeCompteur = 0;
+		// Uncompteur pour compter les value dans matrix
 	    for (int LeindexI = 0; LeindexI < matrix.length; LeindexI++) {
 	        for (int jLeInice2 = 0; jLeInice2 < matrix[LeindexI].length; jLeInice2++) {
 	            if (matrix[LeindexI][jLeInice2] == valeur) {
@@ -131,10 +138,12 @@ public class Point {
 	    int[][] P23 = getLeplateuau.getPlateau();
 	    int nombreELements = countLeCompteur(P23, 4);
 	    Point[] points = new Point[nombreELements];
-	    int indexDupoint = 0;
+	    int indexDupoint = 0;// l'indice du point
 	    for (int LeindexI = 0; LeindexI < P23.length; LeindexI++) {
+			// on parcours la matrice .
 	        for (int jLeInice2 = 0; jLeInice2 < P23[LeindexI].length; jLeInice2++) {
 	            if (P23[LeindexI][jLeInice2] == 4) {
+					// si ça correspond à Un gros Bonus.
 	                points[indexDupoint] = new Point(LeindexI * n, jLeInice2 * n);
 	                points[indexDupoint].Px = LeindexI;
 	                points[indexDupoint].Py = jLeInice2;
