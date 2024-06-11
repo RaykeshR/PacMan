@@ -162,7 +162,7 @@ public class PacMan extends JFrame {
         
         pacman = new PacManCharacter(layeredPane, matrix);  
         fantom  = new Fantome(layeredPane, matrix);  
-        if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {System.exit(0);}
+        //if(pacman.getX()==fantom.getX2() && pacman.getY()==fantom.getY2()) {System.exit(0);}
         
         JPanel controlPanel = new JPanel();
         controlPanel.setBackground(Color.BLACK);
