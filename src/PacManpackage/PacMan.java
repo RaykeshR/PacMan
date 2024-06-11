@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.AbstractAction;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -89,6 +88,7 @@ public class PacMan extends JFrame {
 
     private void Victoire() {
     	//...
+        //https://github.com/RaykeshR/PacMan
         // Stop the timer / la c'est pour arreter le timer
     	// Nous c'est notre main (la loop en fond)
         timerUpdate.cancel();
