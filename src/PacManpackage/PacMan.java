@@ -102,7 +102,7 @@ public class PacMan extends JFrame {
         victoryFrame.getContentPane().add(victoryLabel, constraints);
 
 	    //mêmes objectif que dans gameOver()
-        JLabel timeLabel = new JLabel("Temps : ", SwingConstants.CENTER);
+        JLabel timeLabel = new JLabel("Le Temps :  (en s)", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(timeLabel);
 
         JLabel timeValue = new JLabel(String.format("%.2fs", timer), SwingConstants.CENTER);
@@ -111,7 +111,7 @@ public class PacMan extends JFrame {
         JLabel spaceLabel = new JLabel(" ", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(spaceLabel);
 
-        JLabel scoreLabel = new JLabel("Score : ", SwingConstants.CENTER);
+        JLabel scoreLabel = new JLabel("Le Score :   (en points)", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(scoreLabel);
 
         JLabel scoreValue = new JLabel(score * 10 + " points", SwingConstants.CENTER);
@@ -221,6 +221,7 @@ public class PacMan extends JFrame {
         grille_1 = new GridBagConstraints();
         grille_1.anchor = GridBagConstraints.EAST;
         grille_1.insets = new Insets(5, 5, 5, 5);
+        // On fait le boutton droite on a mis juste un caractère dans le bouton.
         JButton boutonRIGHT = new JButton(">");
         boutonRIGHT.addActionListener(e -> {
             if (pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(), pacman.getX() + 1) != 1) {
@@ -237,10 +238,12 @@ public class PacMan extends JFrame {
         ActionMap actionMap = contentPane.getActionMap();
 
 	    //on récupère les str pour les boutons du clavier
+        // ici on haut bas gauche et droite su clavier
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "moveUp");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "moveDown");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "moveLeft");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "moveRight");
+        // Les touche zqsd pour les gammers
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0), "moveUp");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), "moveLeft");
@@ -266,7 +269,9 @@ public class PacMan extends JFrame {
                 fantom.setDirection("DOWN");
             }
         });
-
+        /**
+         * Le bouton gauche clique
+         */
         actionMap.put("moveLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -287,29 +292,30 @@ public class PacMan extends JFrame {
             }
         });
 
-        JLabel labelScore = new JLabel("Score: " + score);
-        labelScore.setForeground(Color.WHITE);
+        JLabel labelScore = new JLabel("Le Score: " + score);
+        labelScore.setForeground(Color.WHITE);// Le score en blanc
         labelScore.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        JLabel labelTemps = new JLabel("Time: " + timer);
-        labelTemps.setForeground(Color.WHITE);
+        JLabel labelTemps = new JLabel("Le Time: " + timer);
+        labelTemps.setForeground(Color.gray);// Le temps en gris
         labelTemps.setFont(new Font("Tahoma", Font.BOLD, 14));
 
         timerUpdate = new Timer();
         timerUpdate.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                timer += 0.1;
-                labelTemps.setText("Time: " + String.format("%.1f", timer));
-                labelScore.setText("Score: " + String.format("%d", score * 10));
+                timer += 0.1;// on met à jour le temps
+                labelTemps.setText("Le Time: " + String.format("%.1f", timer));
+                labelScore.setText("Le Score: " + String.format("%d", score * 10));
+                // Les labels pour le temps et le score.
                 int pacmanX = pacman.getX();
                 int pacmanY = pacman.getY();
 
                 if (pacman.getX() == fantom.getX2() && pacman.getY() == fantom.getY2()) {
-                    gameOver();
+                    gameOver();// Lance la fenetre de fin pour le game over (perdu ):
                 } 
 		else if (!flag && matrix[pacmanY][pacmanX] == 2) {
-                    flag = true;
+                    flag = true; // pour ne pas avoir une autre exécution lors d'un acutellement lancer
                     matrix[pacmanY][pacmanX] = 0;
                     Point p = matrixPanel.getPoint(pacmanX, pacmanY);
                     matrixPanel.removePoint(p);
@@ -318,6 +324,7 @@ public class PacMan extends JFrame {
                 }
                 if (score >= 100) {
                     Victoire();
+                    // Lance la fenetre de fin pour la victoire
                 }
             }
         }, 100, 100);
