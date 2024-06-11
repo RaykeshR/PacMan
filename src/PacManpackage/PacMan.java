@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class PacMan extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+   
     private JPanel contentPane;
     private PacManCharacter pacman;
     private Fantome fantom;
@@ -24,6 +24,7 @@ public class PacMan extends JFrame {
     private boolean flag=false;
 
     public static void main(String[] args) {
+        // notre main de la boucle
         EventQueue.invokeLater(() -> {
             try {
                 PacMan frame = new PacMan();
