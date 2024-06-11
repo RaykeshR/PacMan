@@ -93,33 +93,33 @@ public class Point {
 //	 */
 //	public Point[] LesPointstandard(int n) {
 //		Plateau get = new Plateau();
-//	    int[][] P = get.getPlateau();
-//	    int nombreELements = count(P, 3);
+//	    int[][] P23 = get.getPlateau();
+//	    int nombreELements = countLeCompteur(P23, 3);
 //	    Point[] points = new Point[nombreELements];
-//	    int index = 0;
-//	    for (int i = 0; i < P.length; i++) {
-//	        for (int j = 0; j < P[i].length; j++) {
-//	            if (P[i][j] == 3) {
-//	                points[index] = new Point(i * n, j * n);
-//	                points[index].Px = i;
-//	                points[index].Py = j;
-//	                index++;
+//	    int indexDupoint = 0;
+//	    for (int LeindexI = 0; LeindexI < P23.length; LeindexI++) {
+//	        for (int jLeInice2 = 0; jLeInice2 < P23[LeindexI].length; jLeInice2++) {
+//	            if (P23[LeindexI][jLeInice2] == 3) {
+//	                points[indexDupoint] = new Point(LeindexI * n, jLeInice2 * n);
+//	                points[indexDupoint].Px = LeindexI;
+//	                points[indexDupoint].Py = jLeInice2;
+//	                indexDupoint++;
 //	            }
 //	        }
 //	    }
 //	    return points;
 //	}
 //methode pour compter dans la matrice le nombre de fois qu'il y'a valeur
-	private int count(int[][] matrix, int valeur) {
-	    int count = 0;
-	    for (int i = 0; i < matrix.length; i++) {
-	        for (int j = 0; j < matrix[i].length; j++) {
-	            if (matrix[i][j] == valeur) {
-	                count++;
+	private int countLeCompteur(int[][] matrix, int valeur) {
+	    int countLeCompteur = 0;
+	    for (int LeindexI = 0; LeindexI < matrix.length; LeindexI++) {
+	        for (int jLeInice2 = 0; jLeInice2 < matrix[LeindexI].length; jLeInice2++) {
+	            if (matrix[LeindexI][jLeInice2] == valeur) {
+	                countLeCompteur++;
 	            }
 	        }
 	    }
-	    return count;
+	    return countLeCompteur;
 	}
 	
 	
@@ -127,18 +127,18 @@ public class Point {
 	
 	 //
 	public Point[] LesBonus(int n) {
-		Plateau get = new Plateau();
-	    int[][] P = get.getPlateau();
-	    int nombreELements = count(P, 4);
+		Plateau getLeplateuau = new Plateau();
+	    int[][] P23 = getLeplateuau.getPlateau();
+	    int nombreELements = countLeCompteur(P23, 4);
 	    Point[] points = new Point[nombreELements];
-	    int index = 0;
-	    for (int i = 0; i < P.length; i++) {
-	        for (int j = 0; j < P[i].length; j++) {
-	            if (P[i][j] == 4) {
-	                points[index] = new Point(i * n, j * n);
-	                points[index].Px = i;
-	                points[index].Py = j;
-	                index++;
+	    int indexDupoint = 0;
+	    for (int LeindexI = 0; LeindexI < P23.length; LeindexI++) {
+	        for (int jLeInice2 = 0; jLeInice2 < P23[LeindexI].length; jLeInice2++) {
+	            if (P23[LeindexI][jLeInice2] == 4) {
+	                points[indexDupoint] = new Point(LeindexI * n, jLeInice2 * n);
+	                points[indexDupoint].Px = LeindexI;
+	                points[indexDupoint].Py = jLeInice2;
+	                indexDupoint++;
 	            }
 	        }
 	    }
