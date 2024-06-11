@@ -7,16 +7,16 @@ public enum Sens {
 	    LEFT(0, -1), //le fantome va à gauche
 	    RIGHT(0, 1);  //le fantome va à droite
 
-	    private final int dx;
-	    private final int dy;
+	    private final int dx; //déplacement en ligne
+	    private final int dy; //déplacement en colonne
 
 	    Sens(int a, int b) { //constructeur
-	        this.dx = a;
-	        this.dy = b;
+	        this.dx = a; 
+	        this.dy = b; 
 	    }
 
 	    public Sens RotationAntiHoraire() { //machine à état tourner dans le sens horaire
-	        switch (this) {
+	        switch (this) { 
 	            case UP:
 	                return LEFT;
 	            case DOWN:
@@ -30,7 +30,7 @@ public enum Sens {
 	        }
 	    }
 
-	    public Sens RotationHoraire() { //machine à état tourner dans le sens antihoraire
+	    public Sens RotationHoraire() { //machine à état tourner dans le sens horaire
 	        switch (this) {
 	            case UP:
 	                return RIGHT;
@@ -43,41 +43,14 @@ public enum Sens {
 	            default:
 	                return NONE;
 	        }
-	    }
-	    public Sens Droite() {
-	       return RIGHT; 
 	    }
 
 	    public int getDx() { //obtenir dx
-	        return dx;
+	        return dx; //renvoit le déplacement en ligne
 	    }
 
 	    public int getDy() { //obtenir dy
-	        return dy;
+	        return dy; //renvoit le déplacement en colonne
 	    }
-
 }
-
-
-//Example
-/*
-public class PacMan {
-    private Direction direction;
-
-    public void move() {
-        int newX = getX() + direction.getDx();
-        int newY = getY() + direction.getDy();
-        // update the position of the Pac-Man
-	}
-
-	public void turnLeft() {
-		direction = direction.turnLeft();
-	}
-
-	public void turnRight() {
-		direction = direction.turnRight();
-	}
-}
-*/
-
 
