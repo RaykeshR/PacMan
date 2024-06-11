@@ -29,7 +29,7 @@ public class PacManCharacter {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/rond-jaune.png"));
         icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
         label = new JLabel(icon);
-        // Position initiale de Pac-Man dans la matrice
+        // Position initiale de Pacman dans la matrice
         x = 14; // colonne
         y = 17; // ligne
         label.setBounds(x * SIZE + offsetX, y * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
