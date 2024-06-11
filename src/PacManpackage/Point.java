@@ -112,9 +112,9 @@ public class Point {
 //methode pour compter dans la matrice le nombre de fois qu'il y'a valeur
 /**
  * Compte les occurence d'une valeur dans la matrice.
- * @param matrix
- * @param valeur
- * @return
+ * @param la matrix
+ * @param valeur et la valeur valeur
+ * @return les occurence d'une valeur dans la matrice.
  */
 	private int countLeCompteur(int[][] matrix, int valeur) {
 	    int countLeCompteur = 0;

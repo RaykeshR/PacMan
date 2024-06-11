@@ -102,6 +102,7 @@ public class Plateau {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
 
 	/**
+	 * C'est notre plateau : 
 	 * @return the p_original
 	 */
 	public int[][] getPlateau() {
@@ -109,14 +110,14 @@ public class Plateau {
 	}
 
 	/**
-	 * @param p_original the p_original to set
+	 * @param p_original C'est notre plateau : the p_original to set
 	 */
 	public void setPlateau(int[][] p_original) {
 		P_original = p_original;
 	}
 
 	/**
-	 * @param p_original the p_original to set
+	 * @param p_original C'est notre plateau : the p_original to set
 	 */
 	public void setPlateau(int x,int y,int valeur) {
 		P_original[x][y] = valeur;
