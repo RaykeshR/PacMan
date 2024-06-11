@@ -11,37 +11,37 @@ public enum Sens {
 	    private final int dy; //déplacement en colonne
 
 	    Sens(int a, int b) { //constructeur
-	        this.dx = a; 
-	        this.dy = b; 
+	        this.dx = a; //initialise le déplacement en ligne
+	        this.dy = b; //initialise le déplacement en colonne
 	    }
 
 	    public Sens RotationAntiHoraire() { //machine à état tourner dans le sens horaire
 	        switch (this) { 
-	            case UP:
-	                return LEFT;
-	            case DOWN:
-	                return RIGHT;
-	            case LEFT:
-	                return DOWN;
-	            case RIGHT:
-	                return UP;
-	            default:
-	                return NONE;
+	            case UP: //si tourné vers le haut
+	                return LEFT; //le fantome est maintenant orienté vers la gauche
+	            case DOWN: //si tourné vers le bas
+	                return RIGHT; //le fantome est maintenant orienté vers la droite
+	            case LEFT: //si tourné vers la gauche
+	                return DOWN; //le fantome est maintenant orienté vers le bas
+	            case RIGHT: //si tourné vers la droite
+	                return UP; //le fantome est maintenant orienté vers le haut
+	            default: //si le fantome na pas de sens
+	                return NONE; //le fantome est maintenant orienté comme avant
 	        }
 	    }
 
 	    public Sens RotationHoraire() { //machine à état tourner dans le sens horaire
 	        switch (this) {
-	            case UP:
-	                return RIGHT;
-	            case DOWN:
-	                return LEFT;
-	            case LEFT:
-	                return UP;
-	            case RIGHT:
-	                return DOWN;
-	            default:
-	                return NONE;
+	            case UP: //si tourné vers le haut
+	                return RIGHT; //le fantome est maintenant orienté vers la droite
+	            case DOWN: //si tourné vers le bas
+	                return LEFT; //le fantome est maintenant orienté vers la gauche
+	            case LEFT: //si tourné vers la gauche
+	                return UP; //le fantome est maintenant orienté vers le haut
+	            case RIGHT: //si tourné vers la droite
+	                return DOWN; //le fantome est maintenant orienté vers le bas
+	            default: //si le fantome n'a pas de sens
+	                return NONE; //le fantome est maintenant orienté comme avant
 	        }
 	    }
 
