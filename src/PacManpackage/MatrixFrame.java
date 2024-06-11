@@ -9,10 +9,10 @@ public class MatrixFrame {
             JFrame frame = new JFrame("Matrix Display"); 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
-            // Créer une instance de Plateau 
+            // Nous creons une instance de plateau 
             Plateau plateau = new Plateau(); 
 
-            // Utiliser cette instance pour créer le panel 
+            // Nous utilisons  l'instance creer  au dessus pour creer le panel
             MatrixPanel panel = new MatrixPanel(plateau); 
             frame.add(panel); 
             frame.pack(); 
