@@ -20,28 +20,23 @@ import java.awt.Image;
 
 public class Fantome {
 
-	//JLabel label;
+	//attributs
 	Sens S = Sens.UP;
-	//position : en coordonné 
-	int x,y;
-	// Position dans le Plateau (Matrice)
-	int Px,Py;
-	//taille Optionnel : 
-	private int taille;
-	
-	
+	int x,y; //position 
+	int Px,Py; 
+	private int taille; //variable pour gerer la taille optionnel	
 	private JLabel label;
-    private int x2, y2,dx,dy;
-    private int[][] matrix;
-    private final int SIZE = 10; // La taille de chaque case dans la matrice
-    private final int offsetX = 110;
-    private final int offsetY = 105;
-    private String direction = "UP"; // Direction actuelle
-    private String previousDirection = "" ;
-    private Timer timer; // Timer pour le déplacement continu
-    private List<Integer> casesAccessibles;
+	private int x2, y2,dx,dy; 
+	private int[][] matrix;
+	private final int SIZE = 10; // La taille de chaque case dans la matrice
+	private final int offsetX = 110;
+	private final int offsetY = 105;
+	private String direction = "UP"; // correspond à la direction actuelle
+	private String previousDirection = "" ; //correspond à la direction  precedente
+	private Timer timer; //pour gerer le déplacement continu
+	private List<Integer> casesAccessibles;
 	
-	
+	//constructeurs
 	public Fantome(JLabel LeLabelDuFantome) {
 		this.label = LeLabelDuFantome;
 	}
@@ -56,27 +51,29 @@ public class Fantome {
         this.matrix = matrix;
         casesAccessibles = Arrays.asList(0, 2);
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/PacManpackage/fantome1.png"));
-        icon = resizeImageIcon(icon, 10, 10); // Redimensionner à 50x50 pixels, ajustez selon vos besoins
+        icon = resizeImageIcon(icon, 10, 10); // On redimensionne à 10x10 pixels l'image
         label = new JLabel(icon);
-        // Position initiale de Pac-Man dans la matrice
+       
+		// position initiale de Paman dans la matrice
         x2 = 13; // colonne
         y2 = 14; // ligne
         Px=x2;Py=y2;
         x=x2 * SIZE;
         y=y2 * SIZE;
         label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, icon.getIconWidth(), icon.getIconHeight());
-        pane.add(label, Integer.valueOf(3));  // Ajouter Pac-Man au pane
+        pane.add(label, Integer.valueOf(3));  // pour ajouter Pacman au pane
         
         timer = new Timer(200, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                move();
+                move();//appel de la methode move() qui correspond au changement de direction
             }
         });
-        timer.start(); // Démarrer le timer
+        timer.start(); // cela permet de démarrer le timer
     }
-
+//methodes
+	//reecriture de la methode resizeImageIcon qui redimensionne une image et est presente dans la classe point
 	private ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
-	        Image img = icon.getImage();
+	        Image img = icon.getImage(); //nouvel icon
 	        Image resizedImage = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 	        return new ImageIcon(resizedImage);
 	}
@@ -84,15 +81,15 @@ public class Fantome {
         this.direction = direction;
     }
 	
-	
+	// switch case pour gerer le deplacement
 	private void move() {
 		direction = MouvementAuto();
 		dx = 0;
     	dy = 0;
         switch (direction) {
             case "LEFT":
-            	dx=-1;
-                moveLeft();
+            	dx=-1; //change la valeur de dx
+                moveLeft();// et appel la methode moveLeft
                 break;
             case "RIGHT":
             	dx=1;
@@ -110,57 +107,31 @@ public class Fantome {
 		updatePosition();
 		
 	}
-//    public void moveLeft() {
-//        if (x2 > 0 && matrix[y2][x2 - 1] == 0) {
-//            x2--;
-//        } else if (x2 == 0) {
-//            x2 = matrix[0].length - 1; // Réapparaître à droite
-//        }
-//        updatePosition();
-//    }
-//
-//    public void moveRight() {
-//        if (x2 < matrix[0].length - 1 && matrix[y2][x2 + 1] == 0) {
-//            x2++;
-//        } else if (x2 == matrix[0].length - 1) {
-//            x2 = 0; // Réapparaître à gauche
-//        }
-//        updatePosition();
-//    }
-//
-//    public void moveUp() {
-//        if (y2 > 0 && matrix[y2 - 1][x2] == 0) {
-//            y2--;
-//            updatePosition();
-//        }
-//    }
-//
-//    public void moveDown() {
-//        if (y2 < matrix.length - 1 && matrix[y2 + 1][x2] == 0) {
-//            y2++;
-//            updatePosition();
-//        }
-//    }
-    
+
+//methodes pour gerer la direction    
     public void moveLeft() {
+	    //verifie si la case à gauche correspond à un 0 ou un 2
         if (x2 > 0 && casesAccessibles.contains(matrix[y2][x2 - 1])) {
             x2--;
+		//verifie si la case correspond a un portail et si oui teleporte à un autre partail
         } else if (x2 == 0) {
-            x2 = matrix[0].length - 1; // Réapparaître à droite
+            x2 = matrix[0].length - 1; // teleporte le plateau à droite
         }
         updatePosition();
     }
 
     public void moveRight() {
+	    //verifie si la case à droite correspond à un 0 ou un 2
         if (x2 < matrix[0].length - 1 && casesAccessibles.contains(matrix[y2][x2 + 1])) {
             x2++;
         } else if (x2 == matrix[0].length - 1) {
-            x2 = 0; // Réapparaître à gauche
+            x2 = 0; // teleporte le plateau à droite
         }
         updatePosition();
     }
 
     public void moveUp() {
+	    //verifie si la case en haut correspond à un 0 ou un 2
         if (y2 > 0 && casesAccessibles.contains(matrix[y2 - 1][x2])) {
             y2--;
             updatePosition();
@@ -168,48 +139,21 @@ public class Fantome {
     }
 
     public void moveDown() {
+	    //verifie si la case en bas correspond à un 0 ou un 2
         if (y2 < matrix.length - 1 && casesAccessibles.contains( matrix[y2 + 1][x2])) {
             y2++;
             updatePosition();
         }
     }
+	//methode pour mettre à jour la direction precedente par la direction actuelle
 	private void updatePosition() {
 	    label.setBounds(x2 * SIZE + offsetX, y2 * SIZE + offsetY, label.getWidth(), label.getHeight());
 //	    if( x2 >= matrix[0].length - 1 || x2 <= 0 || (matrix[y2][x2 + 1] == 1 || matrix[y2][x2 - 1] == 1) && dx!=0) {
 //    		label.setBounds((x2) * SIZE + offsetX, (y2) * SIZE + offsetY, label.getWidth(), label.getHeight());
-//    	}
-//    	else {
-//	    	int newX = (x2-dx) * SIZE + offsetX;
-//	        int newY = (y2-dy) * SIZE + offsetY;
-//	
-//	        // Create a timer to update the position with a delay
-//	        Timer updateTimer = new Timer(10, new ActionListener() {
-//	            int i = 0;
-//	            public void actionPerformed(ActionEvent e) {
-//	                label.setBounds(newX + dx * i, newY + dy * i, label.getWidth(), label.getHeight());
-//	                i++;
-//	
-//	                // Stop the timer when the animation is complete
-//	                if (i >= SIZE) {
-//	                    ((Timer) e.getSource()).stop();
-//	                }
-//	            }
-//	        });
-//	        updateTimer.start();
-//        }
+
 	}
 	
-	
-	
-	/**
-	 * @Fonctionnement : va à une position x,y 
-	 * Avec le label
-	 * @param x
-	 * @param y
-	 */
-	void Goto(int x,int y) {
-		// TODO ...
-		//label
+	void AllerA(int x,int y) {
 		int dx=(this.x-x);
 		int dy=(this.y-y);
 //		if((dx)%10!=0 || (dy)%10!=0) {
@@ -229,7 +173,7 @@ public class Fantome {
 		    System.out.println("erreur");
 		} else {
 		    if (dx == 0 && dy == 0) {
-		        // Pas de déplacement, on ne fait rien
+		        // pas de déplacement, on ne fait rien
 		    	 System.out.println("erreur3");
 		    } else if (((dx) != 10 && (dx) != -10) || ((dy) != 10 && (dy) != -10)) {
 		        //System.out.println("erreur 2");
@@ -246,21 +190,15 @@ public class Fantome {
 		
 	}
 
-	/**
-	 * @Fonctionnement : Verifie la présence de mur dans le Plateau 
-	 * @return Une matrice de 3 par 3 indiquant la position des mur alentoure du labyrinte
-	 * 1 indique la présence d'un mur et 0 l'absence d'un mur . 
-	 * Finalement c'est dans Plateau
-	 */ 
 	int[][] mur() {
 		int[][] L = new int[][] {
 			{0,0,0},
 			{0,0,0},
 			{0,0,0},
 		};
-		Plateau get = new Plateau(); // TODO changé aux plateaux Réél ! ! !
+		Plateau get = new Plateau(); 
 		//int[][] P = Plateau.P_original; // On récupère le plateau
-		int[][] G = get.getMat3(Px,Py); // TODO changé aux plateaux Réél ! ! !
+		int[][] G = get.getMat3(Px,Py); 
 		//On récupère la matrice 3x3 des case alentoure
 		// Petit Rappel : 
 		// 1 les mur | 9 | 8 | 10 | 7 un fantome | 
@@ -284,14 +222,11 @@ public class Fantome {
 		return L;
 	}
 	
-	/**
-	 * @Fonctionnement : Définie le mouvement aléatoire des fantômes 
-	 */
 	String MouvementAuto() {
-		int Decision = getRandomNumber(1,100); // [ 1 , 100 ] 
+		int Decision = getRandomNumber(1,100); 
 		int[][] M=mur(); 
 		if( M[1+S.getDx()][1+S.getDy()]==0 && Decision >= 95 ) {
-			//Si il n'y a pas de mur dans le sens courant on continue (95% du temps)
+			//Si il n'y a pas de mur dans le sens courant on continue 
 			//int n =10; // déplacement de 10 Case
 			int n =SIZE; // déplacement de 10 Case
 			Goto(x+S.getDx()*n,y+S.getDy()*n); 
@@ -316,11 +251,11 @@ public class Fantome {
 			    S = NouveauSensChoisiAuHasard(SensPossible,M); 
 			    
 			    return MouvementAuto(); 
-			    // Case disponible donc mouvement
-			    // Boucle infinie en cas de bug ou d'erreur ! ! !
+			    // Case disponible donc il y'aura mouvement
+			    // Boucle infinie en cas de bug ou d'erreur juste une prevention
 			    
 			}else{
-				// Bloquer pas de sens possible
+				// si c'est Bloquer pas de sens possible
 				return "UP";
 			}
 			
@@ -330,170 +265,96 @@ public class Fantome {
 	
 	
 	Sens NouveauSensChoisiAuHasard(int SensPossible,int[][] M) {
-		Sens[] NouveauSens = new Sens[SensPossible]; // Contiendra les différents sens possible
-		int DecisionNouveauSens = getRandomNumber(0,SensPossible-1); // [ 0 , SensPossible [ 
-		// Remplir NouveauSens
+		Sens[] NouveauSens = new Sens[SensPossible]; // Contiendra les différents sens possible dans un futur proche mdrr
+		int DecisionNouveauSens = getRandomNumber(0,SensPossible-1); 
+		// Remplie NouveauSens
 		int index=0; 
 		if (M[0][1]==0) {
-			// Case du haut disponible
+			// pour verifier si la case du haut est dispo
 			NouveauSens[index] = Sens.UP; 
 			index++; 
 		}
 		if (M[1][0]==0) {
-	        // Case de la gauche disponible
+	        // pour verifier si la case du bas est dispo
 	        NouveauSens[index] = Sens.LEFT; 
 	        index++; 
 	    }
 	    if (M[2][1]==0) {
-	        // Case du bas disponible
+	      // pour verifier si la case du haut est dispo
 	        NouveauSens[index] = Sens.DOWN; 
 	        index++; 
 	    }
 	    if (M[1][2]==0) {
-	        // Case de la droite disponible
+	        // pour verifier si la case du haut est dispo
 	        NouveauSens[index] = Sens.RIGHT; 
 	        index++; 
 	    }
-	    // Nouvelle direction choisi
+	    // retourne la nouvelle direction choisi
 	    return NouveauSens[DecisionNouveauSens];
 	}
 	
-	/**
-	 * @Fonctionnement : Définie un randint aléatoire entre  [min,max] <===
-	 * @param min
-	 * @param max
-	 * @return random int between [ min , max ]
-	 */
+
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max+1 - min)) + min);
-	    /*
-	     * random  											[0,1[
-	     * random * (max+1 - min)  							[0,max+1-min[
-	     * ((Math.random() * (max - min)) + min)  			[min,max+1[
-	     * (int) ((Math.random() * (max+1 - min)) + min)  	[min,max]
-	     */
+	  
 	}
 	
-	
-	
-	
-	
-	
-	/*
-	 *       ----------------------------------------------------     GETTER et SETTER  :           -------------------------------------------------------------------          
-	 */
-	
-	
-	
-	
-	/**
-	 * @return the s
-	 */
 	public Sens getS() {
 		return S;
 	}
-
-	/**
-	 * @return the x
-	 */
 	public int getX() {
 		return x;
 	}
 
-	/**
-	 * @return the y
-	 */
 	public int getY() {
 		return y;
 	}
 
-	/**
-	 * @return the px
-	 */
 	public int getPx() {
 		return Px;
 	}
 
-	/**
-	 * @return the py
-	 */
 	public int getPy() {
 		return Py;
 	}
 
-	/**
-	 * @return the taille
-	 */
 	public int getTaille() {
 		return this.taille;
 	}
 
-	/**
-	 * @param s the s to set
-	 */
 	public void setS(Sens s) {
 		S = s;
 	}
 
-	/**
-	 * @param x the x to set
-	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
-	/**
-	 * @param y the y to set
-	 */
 	public void setY(int y) {
 		this.y = y;
 	}
-
-	/**
-	 * @param px the px to set
-	 */
 	public void setPx(int px) {
 		Px = px;
 	}
 
-	/**
-	 * @param py the py to set
-	 */
 	public void setPy(int py) {
 		Py = py;
 	}
-
-	/**
-	 * @param taille the taille to set
-	 */
 	public void setTaille(int taille) {
 		this.taille = taille;
 	}
-
-	/**
-	 * @return the x2
-	 */
 	public int getX2() {
 		return x2;
 	}
 
-	/**
-	 * @return the y2
-	 */
 	public int getY2() {
 		return y2;
 	}
 
-	/**
-	 * @param x2 the x2 to set
-	 */
 	public void setX2(int x2) {
 		this.x2 = x2;
 	}
 
-	/**
-	 * @param y2 the y2 to set
-	 */
 	public void setY2(int y2) {
 		this.y2 = y2;
 	}
