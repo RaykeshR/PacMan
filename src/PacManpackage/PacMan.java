@@ -88,6 +88,7 @@ public class PacMan extends JFrame {
 
     private void Victoire() {
     	//...
+        // Le git du code qu'on a fait : 
         //https://github.com/RaykeshR/PacMan
         // Stop the timer / la c'est pour arreter le timer
     	// Nous c'est notre main (la loop en fond)
