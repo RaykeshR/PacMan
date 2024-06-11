@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.AbstractAction;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,7 +47,7 @@ public class PacMan extends JFrame {
         gameOverLabel.setFont(new Font("Arial", Font.BOLD, 36));
         gameOverFrameLafenetredeGameOver.getContentPane().setLayout(new GridBagLayout());
 
-	    //grille pour alligner les informations
+	    //grillePourBoutton pour alligner les informations
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -94,25 +93,25 @@ public class PacMan extends JFrame {
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridwidth = GridBagConstraints.REMAINDER;
-        constraints.gridheight = GridBagConstraints.REMAINDER;
+        constraints.gridy = 0; // Les coordonnées du grid
+        constraints.gridwidth = GridBagConstraints.REMAINDER; // Les gird en largeur
+        constraints.gridheight = GridBagConstraints.REMAINDER; // Les gird en hauteur
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.CENTER;
         victoryFrame.getContentPane().add(victoryLabel, constraints);
 
 	    //mêmes objectif que dans gameOver()
         JLabel timeLabel = new JLabel("Le Temps :  (en s)", SwingConstants.CENTER);
-        victoryFrame.getContentPane().add(timeLabel);
+        victoryFrame.getContentPane().add(timeLabel); // Le Label du temps en seconde
 
         JLabel timeValue = new JLabel(String.format("%.2fs", timer), SwingConstants.CENTER);
-        victoryFrame.getContentPane().add(timeValue);
+        victoryFrame.getContentPane().add(timeValue); // L'arrondi du timer
 
         JLabel spaceLabel = new JLabel(" ", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(spaceLabel);
 
         JLabel scoreLabel = new JLabel("Le Score :   (en points)", SwingConstants.CENTER);
-        victoryFrame.getContentPane().add(scoreLabel);
+        victoryFrame.getContentPane().add(scoreLabel); // Les point 
 
         JLabel scoreValue = new JLabel(score * 10 + " points", SwingConstants.CENTER);
         victoryFrame.getContentPane().add(scoreValue);
@@ -136,7 +135,7 @@ public class PacMan extends JFrame {
 	    //nouveau panel pour la fenetre
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(Color.BLACK);
+        contentPane.setBackground(Color.BLACK); // On met la couleur de fond
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
@@ -144,13 +143,13 @@ public class PacMan extends JFrame {
         contentPane.add(layeredPane, BorderLayout.CENTER);
 
         JLabel lblBackground = new JLabel(new ImageIcon(PacMan.class.getResource("/PacManpackage/MapV3.jpg")));
-        lblBackground.setBounds(0, 0, 500, 500);
+        lblBackground.setBounds(0, 0, 500, 500);// pour l'image de la map
         layeredPane.add(lblBackground, Integer.valueOf(1));
 
 	    //on affiche le plateau avec matrixpanel
         Plateau plateau = new Plateau();
         MatrixPanel matrixPanel = new MatrixPanel(plateau);
-        matrixPanel.setBounds(109, 106, 500, 500);
+        matrixPanel.setBounds(109, 106, 500, 500);// On met la matrice dans la fenetre
         matrixPanel.setOpaque(false);
         layeredPane.add(matrixPanel, Integer.valueOf(2));
         
@@ -158,9 +157,9 @@ public class PacMan extends JFrame {
 
 	    //on instancie le pacman et le fantom
         pacman = new PacManCharacter(layeredPane, matrix);  
-        fantom = new Fantome(layeredPane, matrix);  
+        fantom = new Fantome(layeredPane, matrix);  //création de l'objet fantom
         if (pacman.getX() == fantom.getX2() && pacman.getY() == fantom.getY2()) {
-            System.exit(0);
+            System.exit(0);//gestion d'un bug rencontré mais c'est obsolète
         }
 
 	    //fenetre de controle avec les boutons
@@ -173,49 +172,50 @@ public class PacMan extends JFrame {
         fenetreDeBoutons.setBackground(Color.BLACK);
         fenetreDeControle.add(fenetreDeBoutons);
 
-	    //la grille pour aligner les boutons
-        GridBagConstraints grille = new GridBagConstraints();
-        grille.insets = new Insets(5, 5, 5, 5);
+	    //la grillePourBoutton pour aligner les boutons
+        GridBagConstraints grillePourBoutton = new GridBagConstraints();
+        grillePourBoutton.insets = new Insets(5, 5, 5, 5);
 
 	    //le bouton du haut
         JButton boutonUP = new JButton("^");
         boutonUP.addActionListener(e -> {
             if (pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY() - 1, pacman.getX()) != 1) {
-                pacman.setDirection("UP");
+                pacman.setDirection("UP");//gestion d'un bug rencontré
             }
             fantom.setDirection("UP");
         });
-        grille.gridx = 1;
-        grille.gridy = 0;
-        fenetreDeBoutons.add(boutonUP, grille);
+        grillePourBoutton.gridx = 1;
+        grillePourBoutton.gridy = 0;
+        fenetreDeBoutons.add(boutonUP, grillePourBoutton); // on ajoute le bouton UP (haut)
 
 	    //le bouton du bas
-        grille = new GridBagConstraints();
-        grille.insets = new Insets(5, 5, 5, 5);
-        JButton boutonDOWN = new JButton("V");
+        grillePourBoutton = new GridBagConstraints();
+        grillePourBoutton.insets = new Insets(5, 5, 5, 5);
+        JButton boutonDOWN = new JButton("V"); // on ajoute le bouton Bas
         boutonDOWN.addActionListener(e -> {
             if (pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY() + 1, pacman.getX()) != 1) {
                 pacman.setDirection("DOWN");
+                //gestion d'un bug rencontré
             }
             fantom.setDirection("DOWN");
         });
-        grille.gridx = 1;
-        grille.gridy = 2;
-        fenetreDeBoutons.add(boutonDOWN, grille);
+        grillePourBoutton.gridx = 1;
+        grillePourBoutton.gridy = 2;
+        fenetreDeBoutons.add(boutonDOWN, grillePourBoutton);
 
 	    //le bouton de gauche
-        grille = new GridBagConstraints();
-        grille.insets = new Insets(5, 5, 5, 5);
+        grillePourBoutton = new GridBagConstraints();
+        grillePourBoutton.insets = new Insets(5, 5, 5, 5);
         JButton boutonLEFT = new JButton("<");
         boutonLEFT.addActionListener(e -> {
             if (pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(), pacman.getX() - 1) != 1) {
-                pacman.setDirection("LEFT");
+                pacman.setDirection("LEFT");//gestion d'un bug rencontré
             }
             fantom.setDirection("LEFT");
         });
-        grille.gridx = 0;
-        grille.gridy = 1;
-        fenetreDeBoutons.add(boutonLEFT, grille);
+        grillePourBoutton.gridx = 0;
+        grillePourBoutton.gridy = 1;
+        fenetreDeBoutons.add(boutonLEFT, grillePourBoutton); // on ajoute le bouton Gauche
 
 	    //le bouton de droite
         grille_1 = new GridBagConstraints();
@@ -227,34 +227,34 @@ public class PacMan extends JFrame {
             if (pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(), pacman.getX() + 1) != 1) {
                 pacman.setDirection("RIGHT");
             }
-            fantom.setDirection("RIGHT");
+            fantom.setDirection("RIGHT"); // on ajoute le bouton Droite
         });
         grille_1.gridx = 2;
         grille_1.gridy = 1;
         fenetreDeBoutons.add(boutonRIGHT, grille_1);
 
 	    //objets pour keybind
-        InputMap inputMap = contentPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        InputMap inputMapDuClavier = contentPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = contentPane.getActionMap();
 
 	    //on récupère les str pour les boutons du clavier
         // ici on haut bas gauche et droite su clavier
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "moveUp");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "moveDown");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "moveLeft");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "moveRight");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "moveUp");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "moveDown");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "moveLeft");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "moveRight");// on ajoute le bouton Droite du clavier
         // Les touche zqsd pour les gammers
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0), "moveUp");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), "moveLeft");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveRight");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0), "moveUp");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), "moveLeft");
+        inputMapDuClavier.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveRight"); // on ajoute le bouton D du clavier
 
 	    //meme manière que les boutons du haut
         actionMap.put("moveUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pacman.getY() > 0 && pacman.getElementMatrix(pacman.getY() - 1, pacman.getX()) != 1) {
-                    pacman.setDirection("UP");
+                    pacman.setDirection("UP");// on gère un bug des déplacement.
                 }
                 fantom.setDirection("UP");
             }
@@ -264,7 +264,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pacman.getY() < pacman.getMatrixLenghtMoinsUn() && pacman.getElementMatrix(pacman.getY() + 1, pacman.getX()) != 1) {
-                    pacman.setDirection("DOWN");
+                    pacman.setDirection("DOWN");// on gère un bug des déplacement.
                 }
                 fantom.setDirection("DOWN");
             }
@@ -276,7 +276,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pacman.getX() > 0 && pacman.getElementMatrix(pacman.getY(), pacman.getX() - 1) != 1) {
-                    pacman.setDirection("LEFT");
+                    pacman.setDirection("LEFT");// on gère un bug des déplacement.
                 }
                 fantom.setDirection("LEFT");
             }
@@ -286,7 +286,7 @@ public class PacMan extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pacman.getX() < pacman.getMatrix0LenghtMoinsUn() && pacman.getElementMatrix(pacman.getY(), pacman.getX() + 1) != 1) {
-                    pacman.setDirection("RIGHT");
+                    pacman.setDirection("RIGHT");// on gère un bug des déplacement avec le if.
                 }
                 fantom.setDirection("RIGHT");
             }
