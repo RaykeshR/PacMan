@@ -12,15 +12,15 @@ import java.util.TimerTask;
 
 public class PacMan extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+    // initialisation des attributs de la classe pacman
     private JPanel contentPane;
     private PacManCharacter pacman;
-    private Fantome fantom;
+    private Fantome fantom; // Un objet de la 
     private GridBagConstraints grille_1;
-    private double timer = 0;
-    private int score = 0;
-    private Timer timerUpdate;
-    private boolean flag = false;
+    private double timer = 0; // Le temps en seconde c'est un normbre réel
+    private int score = 0;// le score du joureur
+    private Timer timerUpdate;// La boucle de fond du code
+    private boolean flag = false;// Pour ne pas run le code en simultaner
 
 	//le main qui instancie l'objet PacMan qui est le jeu
     public static void main(String[] args) {
@@ -40,13 +40,13 @@ public class PacMan extends JFrame {
 	    //éteint le timer
         timerUpdate.cancel();
 	    //nouvelle frame
-        JFrame gameOverFrame = new JFrame("Game Over");
-        gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame gameOverFrameLafenetredeGameOver = new JFrame("Game Over");
+        gameOverFrameLafenetredeGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	    //nouveau label text
         JLabel gameOverLabel = new JLabel("Game Over!", SwingConstants.CENTER);
         gameOverLabel.setFont(new Font("Arial", Font.BOLD, 36));
-        gameOverFrame.getContentPane().setLayout(new GridBagLayout());
+        gameOverFrameLafenetredeGameOver.getContentPane().setLayout(new GridBagLayout());
 
 	    //grille pour alligner les informations
         GridBagConstraints constraints = new GridBagConstraints();
@@ -56,30 +56,30 @@ public class PacMan extends JFrame {
         constraints.gridheight = GridBagConstraints.REMAINDER;
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.CENTER;
-        gameOverFrame.getContentPane().add(gameOverLabel, constraints);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(gameOverLabel, constraints);
 
 	    //affichage du timer
-        JLabel timeLabel = new JLabel("Temps : ", SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(timeLabel);
+        JLabel timeLabel = new JLabel("Temps :  (en s)", SwingConstants.CENTER);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(timeLabel);
 
 	    //affichage de la valeur du timer
         JLabel timeValue = new JLabel(String.format("%.2fs", timer), SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(timeValue);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(timeValue);
 
 	    //affichage d'un espace
         JLabel spaceLabel = new JLabel(" ", SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(spaceLabel);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(spaceLabel);
 
 	    //affichage du mot score
-        JLabel scoreLabel = new JLabel("Score : ", SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(scoreLabel);
+        JLabel scoreLabel = new JLabel("Le Score :    (en points)", SwingConstants.CENTER);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(scoreLabel);
 
 	    //affichage de la valeur de score
         JLabel scoreValue = new JLabel(score * 10 + " points", SwingConstants.CENTER);
-        gameOverFrame.getContentPane().add(scoreValue);
+        gameOverFrameLafenetredeGameOver.getContentPane().add(scoreValue);
 
-        gameOverFrame.setSize(300, 200);
-        gameOverFrame.setVisible(true);
+        gameOverFrameLafenetredeGameOver.setSize(300, 200);
+        gameOverFrameLafenetredeGameOver.setVisible(true);
         this.dispose();
     }
 
